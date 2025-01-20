@@ -2,5 +2,6 @@ asgiref==3.8.1
 cloudinary==1.42.1
 Django==5.1.5
 django-cloudinary-storage==0.3.0
+djangorestframework==3.15.2
 pillow==11.1.0
 sqlparse==0.5.3
