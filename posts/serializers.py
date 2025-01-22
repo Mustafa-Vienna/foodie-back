@@ -9,7 +9,7 @@ class PostSerializer(serializers.ModelSerializer):
   profile_image = serializers.ReadOnlyField(source = 'author.profile.image.url')
   
   def get_is_author(self, obj):
-    request = self.context('request')
+    request = self.context['request']
     return request.user == obj.author
   
   class Meta:
@@ -17,5 +17,5 @@ class PostSerializer(serializers.ModelSerializer):
     fields = [
       'id', 'author', 'is_author', 'profile_id',
       'profile_image', 'created_at', 'updated_at',
-      'title', 'content', 'image'
+      'title', 'content', 'image', 'category',
     ]
