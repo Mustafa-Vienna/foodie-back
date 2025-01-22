@@ -21,7 +21,7 @@ class Post(models.Model):
   image = models.ImageField(
     upload_to='images/', default='../default_profile_girwrs', blank=True
   )
-  category = models.CharField(max_length=60, choices=CATEGORY_CHOICES, default='others')
+  category = models.CharField(max_length=60, choices=CATEGORY_CHOICES, default='Others')
   
   class Meta:
     ordering = ['-created_at']
