@@ -1,8 +1,8 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from foodie_api.permissions import IsOwnerOrReadOnly
-from posts.models import Post
-from posts.serializers import PostSerializer
+from posts.models import Post, Tag
+from posts.serializers import TagSerializer, PostSerializer
 
 
 class PostListCreateView(generics.ListCreateAPIView):
@@ -18,3 +18,6 @@ class PostDetailView(generics.RetrieveUpdateDestroyAPIView):
   serializer_class = PostSerializer
   permission_classes = [IsOwnerOrReadOnly]
   
+class TagListCreateView(generics.ListCreateAPIView):
+  queryset = Tag.objects.all()
+  serializer_class = TagSerializer
