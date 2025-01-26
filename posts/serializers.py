@@ -36,7 +36,15 @@ class PostSerializer(serializers.ModelSerializer):
     request = self.context['request']
     return request.user == obj.author
   
-  
+  def validate_image(self, value):
+    if value.size > 2 * 1024 * 1024:
+      raise serializers.ValidationError("Image size cannot exceed 2MB.")
+    
+    if value.image.height > 4096 or value.image.width > 4096:
+      raise serializers.ValidationError("Image dimensions cannot exceed 4096x4096px.")
+    
+    return value
+    
   def create(self, validated_data):
     tags_data = validated_data.pop('tags', [])
     post = Post.objects.create(**validated_data)
