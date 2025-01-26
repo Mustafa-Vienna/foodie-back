@@ -35,6 +35,16 @@ class Post(models.Model):
     ('others', 'Others'),
   ]
   
+  IMAGE_FILTER_CHOICES = [
+    ('vintage', 'Vintage'),
+    ('black_and_white', 'Black & White'),
+    ('sepia', 'Sepia'),
+    ('contrast', 'High Contrast'),
+    ('bright', 'Bright'),
+    ('normal', 'Normal'),
+  ]
+
+  
   author = models.ForeignKey(
     User, on_delete=models.CASCADE, related_name='posts', verbose_name='Post Author')
   created_at = models.DateTimeField(auto_now_add=True)
@@ -46,6 +56,9 @@ class Post(models.Model):
   )
   category = models.CharField(max_length=60, choices=CATEGORY_CHOICES, default='others')
   tags = models.ManyToManyField(Tag, blank=True, related_name='posts')
+  image_filter = models.CharField(
+    max_length = 20, choices=IMAGE_FILTER_CHOICES, default='normal'
+  )
 
   
   class Meta:
