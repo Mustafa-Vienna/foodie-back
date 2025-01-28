@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from posts.models import Post, Tag
+from likes.models import Like
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -21,7 +22,17 @@ class PostSerializer(serializers.ModelSerializer):
     queryset = Tag.objects.all(),
     required = False,
     )
+  like_id = serializers.SerializerMethodField()
   
+  
+  def get_like_id(self, obj):
+    user = self.context['request'].user
+    if user.is_authenticated:
+      like = Like.objects.filter(
+        author=user, post=obj
+      ).first()
+      return like.id if like else None
+    return None
   
   class Meta:
     model = Post
@@ -29,7 +40,7 @@ class PostSerializer(serializers.ModelSerializer):
       'id', 'author', 'is_author', 'profile_id',
       'profile_image', 'created_at', 'updated_at',
       'title', 'content', 'image', 'category', 'tags',
-      'image_filter',
+      'image_filter', 'like_id'
     ]
     
   def get_is_author(self, obj):
