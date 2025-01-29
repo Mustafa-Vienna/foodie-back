@@ -17,7 +17,7 @@ class PostListCreateView(generics.ListCreateAPIView):
   permission_classes = [IsAuthenticatedOrReadOnly]
   filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
   filterset_fields = ['category', 'tags']
-  search_fields = ['title', 'content', 'tags__name', 'category']
+  search_fields = ['title', 'content', 'tags__name', 'category', 'author__username']
   ordering_fields = ['likes_count', 'comments_count', 'likes__created_at']
   
   def perform_create(self, serializer):
