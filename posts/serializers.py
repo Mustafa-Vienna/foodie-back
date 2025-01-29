@@ -23,6 +23,8 @@ class PostSerializer(serializers.ModelSerializer):
     required = False,
     )
   like_id = serializers.SerializerMethodField()
+  likes_count = serializers.ReadOnlyField()
+  comments_count = serializers.ReadOnlyField()
   
   
   def get_like_id(self, obj):
@@ -40,7 +42,7 @@ class PostSerializer(serializers.ModelSerializer):
       'id', 'author', 'is_author', 'profile_id',
       'profile_image', 'created_at', 'updated_at',
       'title', 'content', 'image', 'category', 'tags',
-      'image_filter', 'like_id'
+      'image_filter', 'like_id', 'likes_count', 'comments_count'
     ]
     
   def get_is_author(self, obj):
@@ -50,19 +52,15 @@ class PostSerializer(serializers.ModelSerializer):
   def validate_image(self, value):
     if value.size > 2 * 1024 * 1024:
       raise serializers.ValidationError("Image size cannot exceed 2MB.")
-    
     if value.image.height > 4096 or value.image.width > 4096:
       raise serializers.ValidationError("Image dimensions cannot exceed 4096x4096px.")
-    
     return value
     
   def create(self, validated_data):
     tags_data = validated_data.pop('tags', [])
     post = Post.objects.create(**validated_data)
-    
     for tag in tags_data:
       post.tags.add(tag)
-    
     return post
   
   def update(self, instance, validated_data):
@@ -73,10 +71,8 @@ class PostSerializer(serializers.ModelSerializer):
     instance.image = validated_data.get('image', instance.image)
     instance.image_filter = validated_data.get('image_filter', instance.image_filter)
     instance.save()
-    
     if tags_data:
         instance.tags.set(tags_data)
-      
     return instance
   
  

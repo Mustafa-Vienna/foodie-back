@@ -4,9 +4,11 @@ from posts.models import Post
 
 
 class Comment(models.Model):
-
-  author = models.ForeignKey(User, on_delete=models.CASCADE)
-  post = models.ForeignKey(Post, on_delete=models.CASCADE)
+  """
+  Comment model, linked to an author and a post.
+  """
+  author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
+  post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
   content = models.TextField()
