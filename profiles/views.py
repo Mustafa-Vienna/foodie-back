@@ -1,47 +1,40 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from django.http import Http404
-from rest_framework import status
+from django.db.models import Count
+from rest_framework import generics, filters
+from foodie_api.permissions import IsOwnerOrReadOnly
 from .models import Profile
 from .serializers import ProfileSerializer
-from foodie_api.permissions import IsOwnerOrReadOnly
 
-class ProfileList(APIView):
-  def get(self, request):
-    profiles = Profile.objects.all()
-    serializer = ProfileSerializer(
-      profiles, many=True, context={'request': request}
-      )
-    return Response(serializer.data)
-  
-  
-class ProfileDetail(APIView):
+
+class ProfileList(generics.ListAPIView):
+  """
+  List all profiles.
+  """
+  queryset = Profile.objects.annotate(
+    posts_count=Count('author__posts', distinct=True),
+    followers_count=Count('author__followed', distinct=True),
+    following_count=Count('author__following', distinct=True)
+  ).order_by('-created_at')
   serializer_class = ProfileSerializer
+  filter_backends = [filters.OrderingFilter]
+  ordering_fields = [
+    'posts_count',
+    'followers_count', 
+    'following_count', 
+    'author__following__created_at',
+    'author__followed__created_at',
+    ]
+  
+  
+class ProfileDetail(generics.RetrieveUpdateAPIView):
+  """
+  Retrive or update a profile if you're the owner
+  """
   permission_classes = [IsOwnerOrReadOnly]
-  def get_object(self,pk):
-    try:
-      profile = Profile.objects.get(pk=pk)
-      self.check_object_permissions(self.request, profile)
-      return profile
-    except Profile.DoesNotExist:
-      raise Http404
-    
-  def get(self, request, pk):
-    profile = self.get_object(pk)
-    serializer = ProfileSerializer(
-      profile, context={'request': request}
-      )
-    return Response(serializer.data)
-    
-    
-  def put(self, request, pk):
-    profile = self.get_object(pk)
-    serializer = ProfileSerializer(
-      profile, data=request.data, context={'request': request}
-      )
-    if serializer.is_valid():
-      serializer.save()
-      return Response(serializer.data)
-    return Response(serializer.errors, status=status.Http_400_BAD_REQUEST)
+  queryset = Profile.objects.annotate(
+    posts_count=Count('author__posts', distinct=True),
+    followers_count=Count('author__followed', distinct=True),
+    following_count=Count('author__following', distinct=True)
+  ).order_by('-created_at')
+  serializer_class = ProfileSerializer
       
     

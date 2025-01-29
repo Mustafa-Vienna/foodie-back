@@ -5,23 +5,30 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Profile(models.Model):
+  """
+  The profile model linked to a User, and
+  it will actomatically created when a User is created
+  """
   author = models.OneToOneField(User, on_delete=models.CASCADE)
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
   name = models.CharField(max_length=200, blank=True)
   content = models.TextField(blank=True)
   image = models.ImageField(
-    upload_to='images/', default='../default_profile_girwrs.jpg'
+    upload_to='images/', default='../default_profile_girwrs'
   )
   
   class Meta:
     ordering = ['-created_at']
     
   def __str__(self):
-      return f"{self.author}'s profile"
+      return f"{self.author.username}'s profile"
   
 
 def create_profile(sender, instance, created, **kwargs):
+  """
+  Create a Profile instance for each new User
+  """
   if created:
     Profile.objects.create(author=instance)
 

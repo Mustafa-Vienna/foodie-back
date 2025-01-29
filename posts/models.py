@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 
 
 class Tag(models.Model):
+  """
+  Tag model for categorizing posts
+  """
   TAG_CHOICES = [
     ('spicy', 'Spicy'),
     ('sweet', 'Sweet'),
@@ -20,12 +23,17 @@ class Tag(models.Model):
   
   class Meta:
     ordering = ['name']
+    verbose_name_plural = "Tags"
   
   def __str__(self):
-    return self.get_name_display()
+    return self.name
   
 
 class Post(models.Model):
+  """
+  Post model, linked to an author with various attributes
+  Including category, tags, image and filter option.
+  """
   CATEGORY_CHOICES = [
     ('seafood', 'Seafood'),
     ('vegetarian', 'Vegetarian'),
@@ -46,7 +54,8 @@ class Post(models.Model):
 
   
   author = models.ForeignKey(
-    User, on_delete=models.CASCADE, related_name='posts', verbose_name='Post Author')
+    User, on_delete=models.CASCADE, related_name='posts', verbose_name='Post Author'
+    )
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
   title = models.CharField(max_length=250)
@@ -63,7 +72,8 @@ class Post(models.Model):
   
   class Meta:
     ordering = ['-created_at']
+    verbose_name_plural = "Posts"
     
   def __str__(self):
-    return f"{self.id} {self.title}"
+    return f"{self.author.username}'s Post - {self.title}"
   
