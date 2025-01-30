@@ -1,9 +1,34 @@
+# Ignore env files (secrets & API keys)
+.env
+env.py
+
+# Ignore Python cache
+__pycache__
+*.py[cod]
+
+# Ignore SQLite database
+db.sqlite3
+
+# Ignore media and static files
+/media/
+staticfiles/
+
+# Ignore logs and temp files
+*.log
+*.swp
+
+# Ignore Cloudinary Python dependency file
+cloudinary_python.txt
+
+# Ignore GitHub and OS-specific files
+.github/
+.DS_Store
+Thumbs.db
+
+# Ignore Node.js dependencies (if applicable)
+node_modules/
+
+# Ignore core dumps
 core.Microsoft*
 core.mongo*
 core.python*
-env.py
-__pycache__/
-*.py[cod]
-node_modules/
-.github/
-cloudinary_python.txt
