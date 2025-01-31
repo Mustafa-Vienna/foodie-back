@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from posts.models import Post, Tag
 from likes.models import Like
+from cloudinary.utils import cloudinary_url
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -25,6 +26,7 @@ class PostSerializer(serializers.ModelSerializer):
   like_id = serializers.SerializerMethodField()
   likes_count = serializers.ReadOnlyField()
   comments_count = serializers.ReadOnlyField()
+  image = serializers.ImageField(required=False, allow_null=True)
   
   
   def get_like_id(self, obj):
@@ -74,5 +76,3 @@ class PostSerializer(serializers.ModelSerializer):
     if tags_data:
         instance.tags.set(tags_data)
     return instance
-  
- 
