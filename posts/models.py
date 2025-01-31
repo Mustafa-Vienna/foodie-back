@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 
 class Tag(models.Model):
@@ -60,8 +61,8 @@ class Post(models.Model):
   updated_at = models.DateTimeField(auto_now=True)
   title = models.CharField(max_length=250)
   content = models.TextField(blank=True)
-  image = models.ImageField(
-    upload_to='images/', default='../default_post_f3ugv9', blank=True
+  image = CloudinaryField(
+    'images', default='default_post_f3ugv9', blank=True
   )
   category = models.CharField(max_length=60, choices=CATEGORY_CHOICES, default='others')
   tags = models.ManyToManyField(Tag, blank=True, related_name='posts')

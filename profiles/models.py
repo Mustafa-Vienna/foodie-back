@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -14,8 +15,8 @@ class Profile(models.Model):
   updated_at = models.DateTimeField(auto_now=True)
   name = models.CharField(max_length=200, blank=True)
   content = models.TextField(blank=True)
-  image = models.ImageField(
-    upload_to='images/', default='../default_profile_girwrs'
+  image = CloudinaryField(
+    'images', default='default_profile_girwrs'
   )
   
   class Meta:
