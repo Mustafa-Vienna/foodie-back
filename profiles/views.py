@@ -1,16 +1,9 @@
 from django.db.models import Count
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, filters
-from rest_framework.pagination import PageNumberPagination
 from foodie_api.permissions import IsOwnerOrReadOnly
 from .models import Profile
 from .serializers import ProfileSerializer
-
-
-class ProfilePagination(PageNumberPagination):
-  page_size = 10
-  page_size_query_param = "page_size"
-  max_page_size = 100
 
 
 class ProfileList(generics.ListAPIView):
@@ -23,7 +16,6 @@ class ProfileList(generics.ListAPIView):
     following_count=Count('author__following', distinct=True)
   ).order_by('-created_at')
   serializer_class = ProfileSerializer
-  pagination_class = ProfilePagination
   filter_backends = [filters.OrderingFilter, DjangoFilterBackend]
   filterset_fields = [
     'author__following__followed__profile',

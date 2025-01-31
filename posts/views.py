@@ -1,7 +1,6 @@
 from django.db.models import Count
 from rest_framework import generics, permissions, filters
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from rest_framework.pagination import PageNumberPagination
 from foodie_api.permissions import IsOwnerOrReadOnly
 from posts.models import Post, Tag
 from posts.serializers import TagSerializer, PostSerializer
@@ -9,10 +8,6 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 
 
-class PostPagination(PageNumberPagination):
-  page_size = 10
-  page_size_query_param = "page_size"
-  max_page_size = 100
 
 class PostListCreateView(generics.ListCreateAPIView):
   """
@@ -26,7 +21,6 @@ class PostListCreateView(generics.ListCreateAPIView):
     comments_count=Count('comments',distinct=True)
   ).order_by('-created_at')
   
-  pagination_class = PostPagination
   filter_backends = [
     filters.OrderingFilter,
     filters.SearchFilter,
