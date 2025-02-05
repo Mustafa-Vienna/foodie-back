@@ -77,8 +77,13 @@ JWT_AUTH_COOKIE = 'my-app-auth'
 JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
 JWT_AUTH_SAMESITE = 'None'
 
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = "username"
+ACCOUNT_EMAIL_VERIFICATION = "optional"
+
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'foodie_api.serializers.CurrentUserSerializer'
+    'USER_DETAILS_SERIALIZER': 'foodie_api.serializers.CustomRegisterSerializer'
 }
 
 
