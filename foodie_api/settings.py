@@ -27,7 +27,8 @@ if not SECRET_KEY:
     raise ValueError('SECRET_KEY environment variable is not set')
 
 DEBUG = 'DEV' in os.environ
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+# ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost').split(',')
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com"]
 
     
 # Ensure required environment variables
