@@ -17,30 +17,33 @@ class CurrentUserSerializer(UserDetailsSerializer):
       'profile_id', 'profile_image'
     )
     
-  class CustomeRegisterSerializer(RegisterSerializer):
-    email = serializers.EmailField(
-      required=True,
-      max_length=80,
-      error_messages={
-        "required": "Email is required",
-        "invalid": "Enter a valid email address!",
-        "max_length": "Email must be less then 80 characters!",
-      },
-    )
+class CustomRegisterSerializer(RegisterSerializer):
+  email = serializers.EmailField(
+    required=True,
+    max_length=80,
+    error_messages={
+      "required": "Email is required",
+      "invalid": "Enter a valid email address!",
+      "max_length": "Email must be less then 80 characters!",
+    },
+  )
+  
+  def validate_email(self, value):
+    """
+    Ensure that the email is unique
+    """
     
-    def validate_email(self, value):
-      
-      email = value.strip().lower()
-      
-      if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
-        raise serializers.ValidationError("Enter a valid address!")
-      
-      if User.objects.filter(email=email).exists():
-        raise serializers.ValidationError("A user with this email already exists.")
-      
-      return email
+    email = value.strip().lower()
     
+    if User.objects.filter(email=email).exists():
+      raise serializers.ValidationError("A user with this email already exists.")
+    
+    return email
+  
   def save(self, request):
+    """
+    Save the user with email
+    """
     user = super().save(request)
     setup_user_email(request, user, [])
     return user
