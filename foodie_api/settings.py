@@ -30,6 +30,14 @@ DEBUG = 'DEV' in os.environ
 # ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost').split(',')
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com"]
 
+CSRF_TRUSTED_ORIGINS = [os.environ.get("CLIENT_ORIGIN", "http://localhost:3000")]
+CSRF_COOKIE_SECURE = os.environ.get("CSRF_COOKIE_SECURE") == "1"
+CSRF_COOKIE_SAMESITE = "None"
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS = os.environ.get("CORS_ALLOW_ALL_ORIGINS") == "1"
+CORS_ALLOWED_ORIGINS = [os.environ.get("CLIENT_ORIGIN", "http://localhost:3000")]
+
     
 # Ensure required environment variables
 if 'CLOUDINARY_URL' not in os.environ:
@@ -72,15 +80,15 @@ if os.environ.get('DEV') != '1':
     ]
 
 REST_USE_JWT = True
-JWT_AUTH_SECURE = True
-JWT_AUTH_COOKIE = 'my-app-auth'
-JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
-JWT_AUTH_SAMESITE = 'None'
+JWT_AUTH_COOKIE = "jwt-access-token"
+JWT_AUTH_REFRESH_COOKIE = "jwt-refresh-token"
+JWT_AUTH_SAMESITE = "None"
+JWT_AUTH_SECURE = os.environ.get("JWT_AUTH_SECURE") == "1"
 
-ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "username"
-ACCOUNT_EMAIL_VERIFICATION = "optional"
+ACCOUNT_EMAIL_VERIFICATION = os.environ.get("ACCOUNT_EMAIL_VERIFICATION", "none")
 
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'foodie_api.serializers.CustomRegisterSerializer'
@@ -133,14 +141,11 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',
 ]
 if 'CLIENT_ORIGIN' in os.environ:
-    CORS_ALLOWED_ORIGINS = [
-        os.environ.get('CLIENT_ORIGIN')
-    ]
+        CORS_ALLOWED_ORIGINS.append(os.environ.get('CLIENT_ORIGIN'))
 else:
     CORS_ALLOWED_ORIGIN_REGEXES = [
         r"^https:\/\/.*\.codeinstitute-ide\.net$",
     ]
-CORS_ALLOWED_CREDENTIALS = True
 
 ROOT_URLCONF = 'foodie_api.urls'
 WSGI_APPLICATION = 'foodie_api.wsgi.application'
