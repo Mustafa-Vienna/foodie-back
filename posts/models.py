@@ -62,7 +62,7 @@ class Post(models.Model):
   title = models.CharField(max_length=250)
   content = models.TextField(blank=True)
   image = CloudinaryField(
-    'images', default='default_post_f3ugv9', blank=True
+    'images', default='v1737306345/default_post_f3ugv9.jpg', blank=True
   )
   category = models.CharField(max_length=60, choices=CATEGORY_CHOICES, default='others')
   tags = models.ManyToManyField(Tag, blank=True, related_name='posts')
