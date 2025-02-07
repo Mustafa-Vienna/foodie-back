@@ -31,12 +31,12 @@ DEBUG = 'DEV' in os.environ
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com"]
 
 CSRF_TRUSTED_ORIGINS = [os.environ.get("CLIENT_ORIGIN", "http://localhost:3000")]
-CSRF_COOKIE_SECURE = os.environ.get("CSRF_COOKIE_SECURE") == "1"
+CSRF_COOKIE_SECURE = False
 CSRF_COOKIE_SAMESITE = "None"
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_ALL_ORIGINS = os.environ.get("CORS_ALLOW_ALL_ORIGINS") == "1"
-CORS_ALLOWED_ORIGINS = [os.environ.get("CLIENT_ORIGIN", "http://localhost:3000")]
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000",]
 
     
 # Ensure required environment variables
@@ -46,11 +46,7 @@ if 'CLOUDINARY_URL' not in os.environ:
 
 # Cloudinary settings
 CLOUDINARY_STORAGE = {
-    'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL'),
-    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
-    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
-    'SECURE': True
+    'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')
 }
 
 # Static and Media files settings
@@ -96,6 +92,7 @@ REST_AUTH_SERIALIZERS = {
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -116,7 +113,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
-    'corsheaders',
+    
     
     'profiles',
     'posts',
