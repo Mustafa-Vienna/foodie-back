@@ -13,6 +13,15 @@ class ProfileSerializer(serializers.ModelSerializer):
   followers_count = serializers.SerializerMethodField()
   following_count = serializers.SerializerMethodField()
   posts_count = serializers.SerializerMethodField()
+  image = serializers.SerializerMethodField()
+  
+  def get_image(self, obj):
+    """
+    Ensure Cloudinary returns a full URL for the image
+    """
+    if obj.image:
+      return obj.image.url
+    return "https://res.cloudinary.com/duemxeswe/image/upload/v1737306346/default_profile_girwrs.jpg"
   
   def get_is_author(self, obj):
     request = self.context['request']

@@ -26,9 +26,17 @@ class PostSerializer(serializers.ModelSerializer):
   like_id = serializers.SerializerMethodField()
   likes_count = serializers.ReadOnlyField()
   comments_count = serializers.ReadOnlyField()
-  image = serializers.ImageField(required=False, allow_null=True)
+  image = serializers.SerializerMethodField()
   
-  
+  def get_image(self, obj):
+    """
+    Ensure the post image returns a full Cloudinary URL.
+    """
+    if obj.image:
+        return obj.image.url  # Full Cloudinary URL
+    return "https://res.cloudinary.com/duemxeswe/image/upload/v1737306345/default_post_f3ugv9.jpg"
+
+
   def get_like_id(self, obj):
     user = self.context['request'].user
     if user.is_authenticated:
