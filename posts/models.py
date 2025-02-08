@@ -19,7 +19,7 @@ class Tag(models.Model):
   ]
   
   name = models.CharField(
-    max_length=60, choices=TAG_CHOICES, default='others'
+    max_length=60, unique=True
     )
   
   class Meta:

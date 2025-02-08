@@ -5,7 +5,6 @@ from cloudinary.utils import cloudinary_url
 
 
 class TagSerializer(serializers.ModelSerializer):
-  name = serializers.ChoiceField(choices=Tag.TAG_CHOICES)
   
   class Meta:
     model = Tag
