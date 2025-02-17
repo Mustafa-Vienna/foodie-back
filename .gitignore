@@ -1,34 +1,33 @@
-# Ignore env files (secrets & API keys)
-.env
-env.py
-
-# Ignore Python cache
-__pycache__
-*.py[cod]
-
-# Ignore SQLite database
-db.sqlite3
-
-# Ignore media and static files
-/media/
-staticfiles/
-
-# Ignore logs and temp files
+# Django
 *.log
-*.swp
-
-# Ignore Cloudinary Python dependency file
-cloudinary_python.txt
-
-# Ignore GitHub and OS-specific files
-.github/
+*.pot
+*.pyc
+__pycache__
+db.sqlite3
+# Environments
+env.py
+venv/
+.venv
+env/
+# Python
+*.py[cod]
+*$py.class
+# Packages
+*.egg
+*.egg-info
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+# Installer logs
+pip-log.txt
+# IDEs
+.vscode/
+.idea/
+# OS generated
 .DS_Store
-Thumbs.db
-
-# Ignore Node.js dependencies (if applicable)
-node_modules/
-
-# Ignore core dumps
-core.Microsoft*
-core.mongo*
-core.python*
+Thumbs.db\
