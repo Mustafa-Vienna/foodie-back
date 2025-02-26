@@ -55,7 +55,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # REST FRAMEWORK SETTINGS
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "dj_rest_auth.jwt_auth.JWTCookieAuthentication"
+        "rest_framework_simplejwt.authentication.JWTAuthentication"
     ],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 10,
@@ -112,6 +112,8 @@ INSTALLED_APPS = [
     "django_filters",
     "rest_framework.authtoken",
     "dj_rest_auth",
+    "rest_framework_simplejwt",
+    "django_extensions",
     "django.contrib.sites",
     "allauth",
     "allauth.account",
