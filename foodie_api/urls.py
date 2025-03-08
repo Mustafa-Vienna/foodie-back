@@ -3,7 +3,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from .views import root_route
-from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
+from rest_framework_simplejwt.views import TokenRefreshView
+from profiles.views import CustomTokenObtainPairView
 
 urlpatterns = [
     path("", root_route),
@@ -11,7 +12,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('dj-rest-auth/', include('dj_rest_auth.urls')),
     path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
-    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('dj-rest-auth/token/refresh/', TokenRefreshView.as_view(), name="token_refresh"),
     path('profiles/', include('profiles.urls')),
     path('posts/', include('posts.urls')),
