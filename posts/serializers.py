@@ -32,9 +32,16 @@ class PostSerializer(serializers.ModelSerializer):
     Ensure the post image returns a full Cloudinary URL.
     """
     if obj.image:
-        return obj.image.url  # Full Cloudinary URL
-    return "https://res.cloudinary.com/duemxeswe/image/upload/v1737306345/default_post_f3ugv9.jpg"
+      if isinstance(obj.image, str):  # If stored as a string in DB
+        if obj.image.startswith("http"):  # Already full URL
+          return obj.image
+        return f"https://res.cloudinary.com/duemxeswe/image/upload/{obj.image}"  # Cloudinary path fix
 
+      if hasattr(obj.image, "url"):  # Cloudinary image object
+        return obj.image.url  
+
+    # Default image if no image is provided
+    return "https://res.cloudinary.com/duemxeswe/image/upload/v1737306345/default_post_f3ugv9.jpg"
 
   def get_like_id(self, obj):
     user = self.context['request'].user
