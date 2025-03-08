@@ -4,6 +4,11 @@ from rest_framework import generics, filters
 from foodie_api.permissions import IsOwnerOrReadOnly
 from .models import Profile
 from .serializers import ProfileSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+from .serializers import CustomTokenObtainPairSerializer
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+  serializer_class = CustomTokenObtainPairSerializer
 
 
 class ProfileList(generics.ListAPIView):
