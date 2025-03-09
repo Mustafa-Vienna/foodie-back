@@ -1,6 +1,32 @@
 from rest_framework import serializers
 from .models import Profile
 from followers.models import Follower
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from django.contrib.auth.models import User
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+  def validate(self, attrs):
+    data = super().validate(attrs)
+    user = self.user
+    
+    profile_image = user.profile.image if hasattr(user, "profile") and user.profile.image else None
+    
+    # If profile_image is a full URL, return as is; otherwise, append Cloudinary base URL
+    if profile_image:
+      profile_image_url = profile_image.url if hasattr(profile_image, "url") else (
+          profile_image if profile_image.startswith("http") else f"https://res.cloudinary.com/duemxeswe/image/upload/{profile_image}"
+      )
+    else:
+      profile_image_url = "https://res.cloudinary.com/duemxeswe/image/upload/v1737306346/default_profile_girwrs.jpg"
+            
+    data["user"] = {
+        "id": user.id,
+        "username": user.username,
+        "email": user.email,
+        "profile_id": user.profile.id if hasattr(user, "profile") else None,
+        "profile_image": profile_image_url,
+    }
+    return data
 
 class ProfileSerializer(serializers.ModelSerializer):
   """
@@ -17,10 +43,15 @@ class ProfileSerializer(serializers.ModelSerializer):
   
   def get_image(self, obj):
     """
-    Ensure Cloudinary returns a full URL for the image
+    Ensure Cloudinary returns a full URL for the profile image.
     """
     if obj.image:
-      return obj.image.url
+      if isinstance(obj.image, str) and obj.image.startswith("http"):
+          return obj.image
+      if hasattr(obj.image, "url"):
+          return obj.image.url
+      return f"https://res.cloudinary.com/duemxeswe/image/upload/{obj.image}"
+
     return "https://res.cloudinary.com/duemxeswe/image/upload/v1737306346/default_profile_girwrs.jpg"
   
   def get_is_author(self, obj):
