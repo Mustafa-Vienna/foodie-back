@@ -47,11 +47,11 @@ class ProfileSerializer(serializers.ModelSerializer):
     """
     if obj.image:
       if isinstance(obj.image, str) and obj.image.startswith("http"):
-          return obj.image
+        return obj.image
       if hasattr(obj.image, "url"):
-          return obj.image.url
-      return f"https://res.cloudinary.com/duemxeswe/image/upload/{obj.image}"
-
+        return obj.image.url
+      image_path = obj.image.lstrip('/') if isinstance(obj.image, str) else obj.image
+      return f"https://res.cloudinary.com/duemxeswe/image/upload/{image_path}"
     return "https://res.cloudinary.com/duemxeswe/image/upload/v1737306346/default_profile_girwrs.jpg"
   
   def get_is_author(self, obj):
