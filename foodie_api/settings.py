@@ -26,7 +26,10 @@ CSRF_COOKIE_SAMESITE = "None"
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_ALL_ORIGINS = os.getenv("CORS_ALLOW_ALL_ORIGINS") == "1"
-CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "https://foodiefront-bac5250c6d8.herokuapp.com",
+    ]
 CORS_ALLOWED_ORIGIN_REGEXES = [
     r"^https:\/\/.*\.codeinstitute-ide\.net$",
 ]
