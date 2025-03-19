@@ -15,11 +15,16 @@ class PostSerializer(serializers.ModelSerializer):
   profile_image = serializers.ReadOnlyField(source='author.profile.image.url')
   category = serializers.ChoiceField(choices=Post.CATEGORY_CHOICES, default='others')
   image_filter = serializers.ChoiceField(choices=Post.IMAGE_FILTER_CHOICES, default='normal')
-  tags = serializers.PrimaryKeyRelatedField(
+  
+  tags = TagSerializer(many=True, read_only=True)
+  tag_ids = serializers.PrimaryKeyRelatedField(
     many=True,
+    write_only=True,
     queryset=Tag.objects.all(),
+    source='tags',
     required=False,
   )
+  
   like_id = serializers.SerializerMethodField()
   likes_count = serializers.ReadOnlyField()
   comments_count = serializers.ReadOnlyField()
@@ -36,15 +41,6 @@ class PostSerializer(serializers.ModelSerializer):
       like = Like.objects.filter(author=user, post=obj).first()
       return like.id if like else None
     return None
-
-  class Meta:
-    model = Post
-    fields = [
-      'id', 'author', 'is_author', 'profile_id',
-      'profile_image', 'created_at', 'updated_at',
-      'title', 'content', 'image', 'category', 'tags',
-      'image_filter', 'like_id', 'likes_count', 'comments_count'
-    ]
 
   def get_is_author(self, obj):
     request = self.context['request']
@@ -75,3 +71,12 @@ class PostSerializer(serializers.ModelSerializer):
     if tags_data:
       instance.tags.set(tags_data)
     return instance
+
+  class Meta:
+    model = Post
+    fields = [
+      'id', 'author', 'is_author', 'profile_id',
+      'profile_image', 'created_at', 'updated_at',
+      'title', 'content', 'image', 'category', 'tags', 'tag_ids',
+      'image_filter', 'like_id', 'likes_count', 'comments_count'
+    ]
