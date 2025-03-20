@@ -20,23 +20,28 @@ DEBUG = os.getenv("DEV") == "1"
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 
 # CORS & CSRF SETTINGS
-CSRF_TRUSTED_ORIGINS = [os.getenv("CLIENT_ORIGIN", "http://localhost:3000")]
+CSRF_COOKIE_SAMESITE = "None"  
 CSRF_COOKIE_SECURE = True
-CSRF_COOKIE_SAMESITE = "Lax"
+CSRF_COOKIE_HTTPONLY = True  
 
-CORS_ALLOW_CREDENTIALS = True
+SESSION_COOKIE_SAMESITE = "None"  
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY = True  
+
+CORS_ALLOW_CREDENTIALS = True  
 CORS_ALLOW_ALL_ORIGINS = os.getenv("CORS_ALLOW_ALL_ORIGINS") == "1"
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "https://foodiefront-bac5250c6d8.herokuapp.com",
-    ]
+]
 CORS_ALLOWED_ORIGIN_REGEXES = [
     r"^https:\/\/.*\.codeinstitute-ide\.net$",
 ]
 
-# Ensure proper CORS settings
-if "CLIENT_ORIGIN" in os.environ:
-    CORS_ALLOWED_ORIGINS.append(os.getenv("CLIENT_ORIGIN"))
+# Ensure CLIENT_ORIGIN is always included
+CLIENT_ORIGIN = os.getenv("CLIENT_ORIGIN", "http://localhost:3000")
+if CLIENT_ORIGIN not in CORS_ALLOWED_ORIGINS:
+    CORS_ALLOWED_ORIGINS.append(CLIENT_ORIGIN)
 
 # Ensure Cloudinary settings exist
 if "CLOUDINARY_URL" not in os.environ:
@@ -58,7 +63,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # REST FRAMEWORK SETTINGS
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework_simplejwt.authentication.JWTAuthentication"
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "rest_framework.authentication.SessionAuthentication",  # Allow session-based auth
+    ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticatedOrReadOnly",
     ],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 10,
@@ -66,7 +75,8 @@ REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
 }
 
-if os.getenv("DEV") != "1":
+# Restrict API responses to JSON in production
+if not DEBUG:
     REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = [
         "rest_framework.renderers.JSONRenderer",
     ]
@@ -77,18 +87,22 @@ TOKEN_MODEL = None
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
-    "ROTATE_REFRESH_TOKENS": False,
+    "ROTATE_REFRESH_TOKENS": True,  # Automatically rotate refresh tokens
     "BLACKLIST_AFTER_ROTATION": True,
     "UPDATE_LAST_LOGIN": True,
     "AUTH_HEADER_TYPES": ("Bearer",),
     "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
+    "SIGNING_KEY": SECRET_KEY,
+    "ALGORITHM": "HS256",
 }
 
+# JWT COOKIE SETTINGS
 JWT_AUTH_COOKIE = "jwt-access-token"
 JWT_AUTH_REFRESH_COOKIE = "jwt-refresh-token"
-JWT_AUTH_SAMESITE = "Lax"
-JWT_AUTH_SECURE = os.getenv("JWT_AUTH_SECURE") == "1"
+JWT_AUTH_SAMESITE = "None"
+JWT_AUTH_SECURE = True
 JWT_AUTH_HTTPONLY = True
+JWT_AUTH_PATH = "/"  # Ensures cookies are accessible for all endpoints
 
 # ACCOUNT SETTINGS
 ACCOUNT_EMAIL_REQUIRED = False
@@ -185,3 +199,13 @@ USE_TZ = True
 
 # DEFAULT PRIMARY KEY
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# SECURITY SETTINGS FOR PRODUCTION
+if not DEBUG:
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    SECURE_HSTS_SECONDS = 31536000  # 1 Year HSTS
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    SECURE_SSL_REDIRECT = True  # Force all requests to HTTPS
