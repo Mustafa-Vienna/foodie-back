@@ -10,7 +10,7 @@ class CommentList(generics.ListCreateAPIView):
   """
   serializer_class = CommentSerializer
   permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-  queryset = Comment.objects.all()
+  queryset = Comment.objects.select_related('author__profile').all()
   filter_backends = [DjangoFilterBackend]
   filterset_fields = ['post']
   
@@ -20,7 +20,7 @@ class CommentList(generics.ListCreateAPIView):
     
 class CommentDetailView(generics.RetrieveUpdateDestroyAPIView):
   """
-  Retrive a comment, the author can update or delete the comment
+  Retrieve a comment, the author can update or delete the comment
   """
   queryset = Comment.objects.all()
   serializer_class = CommentDetailSerializer
