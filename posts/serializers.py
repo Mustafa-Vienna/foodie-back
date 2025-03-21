@@ -52,6 +52,12 @@ class PostSerializer(serializers.ModelSerializer):
     if value and (value.image.height > 4096 or value.image.width > 4096):
       raise serializers.ValidationError("Image dimensions cannot exceed 4096x4096px.")
     return value
+  
+  def validate_content(self, value):
+    required_keys = ["introduction", "ingredients", "steps", "conclusion"]
+    if not all(key in value for key in required_keys):
+      raise serializers.ValidationError(f"Content must include: {', '.join(required_keys)}")
+    return value
 
   def create(self, validated_data):
     tags_data = validated_data.pop('tags', [])
