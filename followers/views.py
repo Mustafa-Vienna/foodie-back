@@ -5,7 +5,7 @@ from foodie_api.permissions import IsOwnerOrReadOnly
 
 
 class FollowerListCreateView(generics.ListCreateAPIView):
-  queryset = Follower.objects.all()
+  queryset = Follower.objects.select_related('author', 'followed').all()
   serializer_class = FollowerSerializer
   permission_classes = [permissions.IsAuthenticatedOrReadOnly]
   
