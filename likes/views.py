@@ -5,7 +5,7 @@ from foodie_api.permissions import IsOwnerOrReadOnly
 
 
 class LikeListCreateView(generics.ListCreateAPIView):
-  queryset = Like.objects.all()
+  queryset = Like.objects.select_related('author', 'post').all()
   serializer_class = LikeSerializer
   permission_classes = [permissions.IsAuthenticatedOrReadOnly]
   
