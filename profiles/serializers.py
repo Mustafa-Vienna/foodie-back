@@ -39,9 +39,10 @@ class ProfileSerializer(serializers.ModelSerializer):
   followers_count = serializers.SerializerMethodField()
   following_count = serializers.SerializerMethodField()
   posts_count = serializers.SerializerMethodField()
-  image = serializers.SerializerMethodField()
+  image = serializers.ImageField(required=False)
+  image_url = serializers.SerializerMethodField(source='get_image')
   
-  def get_image(self, obj):
+  def get_image_url(self, obj):
     """
     Ensure Cloudinary returns a full URL for the profile image.
     """
@@ -80,6 +81,6 @@ class ProfileSerializer(serializers.ModelSerializer):
     model = Profile
     fields = [
       'id', 'author', 'created_at', 'updated_at', 'name',
-      'content', 'image', 'is_author', 'following_id',
+      'content', 'image', 'image_url', 'is_author', 'following_id',
       'followers_count', 'following_count', 'posts_count'
     ]
