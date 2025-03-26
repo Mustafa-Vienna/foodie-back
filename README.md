@@ -146,22 +146,226 @@ FOODIE-BACK/
 
 ### ✅ Current Features
 
-- 🔐 JWT-based user authentication
-- 👤 User profile management (with avatar & bio)
-- 🍽 Create, update, delete food posts
-- 🖼 Image upload via Cloudinary
-- ❤️ Like system for posts
-- 💬 Comment system under posts
-- 👥 Follow/unfollow users
-- 🔎 Filtering and pagination
-- 📦 Modular, RESTful API design
+## 🧠 Foodie API Backend Features
+
+This Django REST Framework-powered backend delivers a robust and modular API for the Foodie platform, complete with image handling, authentication, and social interactions.
+
+---
+
+### 🔐 JWT-Based Authentication
+
+- Secure login and token management with **SimpleJWT**
+- Returns custom payload with user details (ID, username, profile image)
+- Integrated into login/signup flow
+
+📸 *Proof:*  
+![Admin Login](../foodie-back/documentation/backend_validation/admin_login.png)
+
+---
+
+### 👤 User Profile Management
+
+- Profiles are automatically created on user registration
+- Users can edit their name, bio, and avatar
+- Avatar images are handled via **Cloudinary**
+- Dynamic counts for:
+  - Posts
+  - Followers
+  - Following
+
+📸 *Proof:*  
+![Profile Detail](../foodie-back/documentation/backend_validation/user_profile.png)
+
+---
+
+### 🍽 Create, Update & Delete Food Posts
+
+- Authenticated users can:
+  - Create rich posts with title, intro, steps, ingredients, and images
+  - Update or delete only their own posts
+- Validations for fields like tags, category, and image
+
+📸 *Proof:*  
+![Post Management](../foodie-back/documentation/backend_validation/posts_management.png)
+
+---
+
+### 🖼 Image Upload via Cloudinary
+
+- Profile and post images stored using **Cloudinary**
+- Fallback to a default image when none is uploaded
+- Fully integrated into serializers for real-time rendering
+
+---
+
+### ❤️ Like System for Posts
+
+- Users can like/unlike any post
+- Total likes and like status (`liked` / `not liked`) are calculated per user
+- Tooltip feedback and frontend counter sync
+
+📸 *Proof:*  
+![Comments](../foodie-back/documentation/backend_validation/Likes_system.png)
+
+---
+
+### 💬 Comment System Under Posts
+
+- Comment creation, listing, and user linking
+- Shows author info and avatar
+- Only comment owners can delete or update their comments
+
+📸 *Proof:*  
+![Comments](../foodie-back/documentation/backend_validation/Comment_system.png)
+
+---
+
+### 👥 Follow/Unfollow Users
+
+- Authenticated users can follow or unfollow others
+- Profile detail view shows:
+  - Follow status
+  - Followers and following counts
+- Prevents duplicate follows
+
+📸 *Proof:*  
+![Comments](../foodie-back/documentation/backend_validation/Followes_system.png)
+
+---
+
+### 🔎 Filtering, Search & Pagination
+
+- Full filtering and ordering for posts:
+  - `likes_count`, `comments_count`, `created_at`, etc.
+- Filter by tag or category using DjangoFilterBackend
+- Paginated results for efficient browsing
+
+📸 *Proof:*  
+![Search & Filters](../foodie-back/documentation/backend_validation/Search_Filter_system.png)  
+![Tags System](../foodie-back/documentation/backend_validation/Posts_Tags_system.png)
+
+---
+
+### 📦 Modular & RESTful API Design
+
+- Organized by app: `profiles`, `posts`, `comments`, `likes`, `followers`
+- RESTful views and URL patterns for clean endpoint usage
+- Token-protected POST, PATCH, DELETE actions
+
+---
+
+### 🚫 Error Handling Example
+
+- Example: Attempting to access a non-existent profile
+
+📸 *Proof:*  
+![404 Profile Not Found](../foodie-back/documentation/backend_validation/non_exist_profile.png)
+
 
 ### 🔜 Upcoming Features
 
-- 🔔 Real-time notifications (WebSockets)
-- 💌 Direct messaging between users
-- 🌟 Recipe bookmarking or save-for-later
-- 🧠 Smart content recommendations
+The following features are in the pipeline and will be implemented in future versions of the Foodie API. These enhancements aim to improve user engagement, content interaction, and personalization across the platform.
+
+---
+
+#### 🔁 Like & Reply to Comments
+- Allow users to like individual comments for better feedback visibility.
+- Introduce **comment replies** to enable threaded discussions.
+- Build hierarchical structure using parent-child relationships.
+
+🧪 *Planned Test Cases:*
+- Verify comment reply creation by authenticated users.
+- Ensure reply nesting is limited to one level deep (for clarity).
+- Test like toggling on comments and reply consistency in API.
+
+---
+
+#### 📝 Add New Post from Profile Page
+- Allow users to create posts directly from their profile page.
+- Reduces navigation friction and promotes more posting activity.
+- Improves UX by placing creation entry points where users are most active.
+
+🧪 *Planned Test Cases:*
+- Ensure form visibility only for profile owners.
+- Validate post creation and redirection back to profile on success.
+
+---
+
+#### 🌟 Popular Profiles
+- A new endpoint to list **top profiles** based on:
+  - Follower count
+  - Post count
+  - Engagement (likes, comments)
+
+🧪 *Planned Test Cases:*
+- Rank profiles correctly based on dynamic follower/post metrics.
+- Ensure endpoint is paginated and filterable.
+
+---
+
+#### 🔔 Real-Time Notifications (WebSockets)
+- Notify users in real-time about:
+  - New followers
+  - Likes
+  - Comments or replies
+- Built with Django Channels + Redis backend
+
+🧪 *Planned Test Cases:*
+- Validate event broadcasting on `like`, `comment`, or `follow`.
+- Test fallback to polling for unsupported clients.
+
+---
+
+#### 💌 Direct Messaging (DM)
+- Private chat between users.
+- Supports:
+  - New message notifications
+  - Chat list with latest activity
+  - Real-time updates via WebSockets
+
+🧪 *Planned Test Cases:*
+- Ensure only involved users can view or send messages.
+- Rate-limit message sending to prevent spam.
+
+---
+
+#### 📌 Save for Later / Bookmark Recipes
+- Users can bookmark recipes and view a "Saved Posts" section.
+- Helps users build personal collections for future cooking inspiration.
+
+🧪 *Planned Test Cases:*
+- Prevent duplicate bookmarks per user.
+- Validate saved/un-saved toggle in both frontend and API.
+
+---
+
+#### 🧠 Smart Content Recommendations
+- Recommend posts based on:
+  - Tags
+  - Categories
+  - Previously liked or commented content
+- Powered by simple rule-based logic at first (can later move to ML-based)
+
+🧪 *Planned Test Cases:*
+- Ensure recommendations exclude the user’s own posts.
+- Validate fallback to trending posts if data is insufficient.
+
+---
+
+### 🧩 Followers System – Coming Soon!
+
+The `followers` app is already in place, with models and serializers prepared.  
+Due to time constraints during the current milestone, it was not integrated into the frontend. However, it will be completed in the next version and linked with the notifications and profile feed system.
+
+🧪 *Planned Test Cases:*
+- Follow/unfollow toggle and state validation
+- Prevent self-following
+- Count accuracy on profile detail
+
+---
+
+> 📅 All features are structured with test-driven development in mind, and will include proper unit tests and integration tests using Django REST Framework and `pytest` as needed.
+
 
 ---
 
