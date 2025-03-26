@@ -1,131 +1,261 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# 🍽 Foody API Backend
 
-Welcome Mustafa Muhammed,
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/t/Mustafa-Vienna/foodie-back)](https://github.com/Mustafa-Vienna/foodie-back/commits/main)
+[![GitHub last commit](https://img.shields.io/github/last-commit/Mustafa-Vienna/foodie-back)](https://github.com/Mustafa-Vienna/foodie-back/commits/main)
+[![GitHub repo size](https://img.shields.io/github/repo-size/Mustafa-Vienna/foodie-back)](https://github.com/Mustafa-Vienna/foodie-back)
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=Mustafa-Vienna&repo=foodie-back&layout=compact)
 
-You can safely delete this README.md file or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **June 18, 2024**
 
-## Gitpod Reminders
+## Project Overview
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+Foodie API is a backend for a community platform where food lovers can share and discover delicious recipes. Built with Django Rest Framework, it provides a robust backend for social interactions around food content.
 
-`python3 -m http.server`
+### 🌐 Related Projects
 
-A blue button should appear to click: _Make Public_,
+#### 🧠 Backend API (Django Rest Framework + JWT)
+- 🔗 GitHub: [Mustafa-Vienna/foodie-back](https://github.com/Mustafa-Vienna/foodie-back)
+- 🚀 Live: [https://foodieback-0e50528a3736.herokuapp.com/](https://foodieback-0e50528a3736.herokuapp.com/)
 
-Another blue button should appear to click: _Open Browser_.
+#### 💻 Frontend Application (React)
+- 🔗 GitHub: [Mustafa-Vienna/foodie](https://github.com/Mustafa-Vienna/foodie)
+- 🚀 Live: [https://foodiefront-bacd5250c6d8.herokuapp.com/](https://foodiefront-bacd5250c6d8.herokuapp.com/)
 
-To run a backend Python file, type `python3 app.py` if your Python file is named `app.py`, of course.
 
-A blue button should appear to click: _Make Public_,
-
-Another blue button should appear to click: _Open Browser_.
-
-By Default, Gitpod gives you superuser security privileges. Therefore, you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
-
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you, so do not share it. If you accidentally make it public, you can create a new one with _Regenerate API Key_.
-
-### Connecting your Mongo database
-
-- **Connect to Mongo CLI on a IDE**
-- navigate to your MongoDB Clusters Sandbox
-- click **"Connect"** button
-- select **"Connect with the MongoDB shell"**
-- select **"I have the mongo shell installed"**
-- choose **mongosh (2.0 or later)** for : **"Select your mongo shell version"**
-- choose option: **"Run your connection string in your command line"**
-- in the terminal, paste the copied code `mongo "mongodb+srv://<CLUSTER-NAME>.mongodb.net/<DBname>" --apiVersion 1 --username <USERNAME>`
-  - replace all `<angle-bracket>` keys with your own data
-- enter password _(will not echo **\*\*\*\*** on screen)_
-
-------
-
-## Release History
-
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
-
-**June 18, 2024,** Add Mongo back into template
-
-**June 14, 2024,** Temporarily remove Mongo until the key issue is resolved
-
-**May 28 2024:** Fix Mongo and Links installs
-
-**April 26 2024:** Update node version to 16
-
-**September 20 2023:** Update Python version to 3.9.17.
-
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
-
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
-
-**July 2 2021:** Remove extensions that are not available in Open VSX.
-
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
-
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
-
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
-
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
-
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
-
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
-------
-
-## FAQ about the uptime script
-
-**Why have you added this script?**
-
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
-
-**How will this affect me?**
-
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
-
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
-
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
-
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+## 📁 Project Structure
 
 ```
-pkill uptime.sh
-rm .vscode/uptime.sh
+FOODIE-BACK/
+│
+├── manage.py
+├── requirements.txt
+├── README.md
+├── Procfile
+├── runtime.txt
+├── db.sqlite3
+│
+├── foodie_api/
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── permissions.py
+│   ├── serializers.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── utils.py
+│   ├── views.py
+│   └── wsgi.py
+│
+├── comments/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── migrations/
+│   ├── models.py
+│   ├── serializers.py
+│   ├── tests.py
+│   ├── urls.py
+│   ├── utils.py
+│   └── views.py
+│
+├── followers/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── migrations/
+│   ├── models.py
+│   ├── serializers.py
+│   ├── tests.py
+│   ├── urls.py
+│   ├── utils.py
+│   └── views.py
+│
+├── likes/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── migrations/
+│   ├── models.py
+│   ├── serializers.py
+│   ├── tests.py
+│   ├── urls.py
+│   ├── utils.py
+│   └── views.py
+│
+├── posts/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── migrations/
+│   ├── fit_post_content.py
+│   ├── models.py
+│   ├── serializers.py
+│   ├── tests.py
+│   ├── urls.py
+│   ├── utils.py
+│   └── views.py
+│
+├── profiles/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── migrations/
+│   ├── models.py
+│   ├── serializers.py
+│   ├── tests.py
+│   ├── urls.py
+│   ├── utils.py
+│   └── views.py
+│
+├── media/
+│   └── images/
+│       ├── tiika_burger_75fade9.webp
+│       └── milk_burger.webp
+│
+└── .gitignore
 ```
 
-**Anything more?**
+## 🗂 Project Modules
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+* 🧠 Main Config: `foodie_api/`
+  - Core project configuration
+  - API settings and main URLs
+  - Permissions and serializers
+
+* 🍽 Posts: `posts/`
+  - Create, read, update, delete food posts
+  - Content management
+  - Post-related utilities
+
+* ❤️ Likes: `likes/`
+  - Like functionality
+  - User interaction tracking
+
+* 💬 Comments: `comments/`
+  - Comment system
+  - User discussions
+
+* 👥 Followers: `followers/`
+  - User follow/unfollow mechanics
+  - Social connection management
+
+* 👤 Profiles: `profiles/`
+  - User profile management
+  - Profile-related operations
+
+## 🚀 Features
+
+### ✅ Current Features
+
+- 🔐 JWT-based user authentication
+- 👤 User profile management (with avatar & bio)
+- 🍽 Create, update, delete food posts
+- 🖼 Image upload via Cloudinary
+- ❤️ Like system for posts
+- 💬 Comment system under posts
+- 👥 Follow/unfollow users
+- 🔎 Filtering and pagination
+- 📦 Modular, RESTful API design
+
+### 🔜 Upcoming Features
+
+- 🔔 Real-time notifications (WebSockets)
+- 💌 Direct messaging between users
+- 🌟 Recipe bookmarking or save-for-later
+- 🧠 Smart content recommendations
 
 ---
 
-Happy coding!
+## 🔧 Technologies Used
+
+### 🖥 Backend
+
+- Django 5.1.5
+- Django Rest Framework 3.15.2
+- PostgreSQL (via dj-database-url)
+- Cloudinary (media storage)
+- WhiteNoise (static file serving)
+
+### 🔐 Authentication
+
+- Simple JWT 5.4.0
+- Django AllAuth
+- Dj-Rest-Auth
+
+### 🧰 Additional Libraries
+
+- `django-cors-headers`
+- `django-filter`
+- `gunicorn` (WSGI server for deployment)
+- `pillow` (image handling)
+
+---
+
+## 🛠 Prerequisites
+
+Make sure you have the following installed:
+
+- Python 3.9+
+- `pip`
+- `virtualenv` (recommended for isolated environments)
+
+---
+
+## ⚡️ Quick Start
+
+### 📥 Installation
+
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/Mustafa-Vienna/foodie-back.git
+cd foodie-back
+```
+
+2. **Create a virtual environment**
+  ```bash
+  python -m venv venv
+  source venv/bin/activate 
+
+  # On Windows use 
+  `venv\Scripts\activate`
+  ```
+
+3. **Install dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+4. **Set up environment variables**
+  - Create an `env.py` file with:
+```python
+import os
+os.environ['SECRET_KEY'] = 'your-secret-key'
+os.environ['DATABASE_URL'] = 'your-database-url'
+os.environ['CLOUDINARY_URL'] = 'your-cloudinary-url'
+```
+
+5. **Run migrations**
+```bash
+python manage.py migrate
+```
+
+6. **Start the development server**
+```bash
+python manage.py runserver
+```
+
+## 🔐 Environment Configuration
+
+These environment variables must be set (either in `env.py` for local use or in your hosting config for deployment):
+
+| Variable                | Description                                 |
+|-------------------------|---------------------------------------------|
+| `SECRET_KEY`            | Django secret key                           |
+| `DATABASE_URL`          | PostgreSQL connection string                |
+| `CLOUDINARY_URL`        | Full Cloudinary media URL                   |
+| `CLOUDINARY_CLOUD_NAME` | Your Cloudinary cloud name                  |
+| `CLOUDINARY_API_KEY`    | Your Cloudinary API key                     |
+| `CLOUDINARY_API_SECRET` | Your Cloudinary API secret                  |
+| `DEV`                   | Set to `1` for local development            |
+| `ALLOWED_HOSTS`         | Comma-separated list of allowed domains     |
+
