@@ -148,21 +148,25 @@ No errors or warnings were found. Below are the results with screenshots stored 
 
 ---
 
-### ⚠️ Error Handling & Data Validation
+## ⚠️ Error Handling & Data Validation
 
-| Area               | User Action                                       | Expected Result             | Pass/Fail | Comments                       | Screenshot |
-|--------------------|---------------------------------------------------|------------------------------|-----------|--------------------------------|------------|
-| Any POST endpoint  | Send malformed JSON                               | 400 Bad Request              |           | JSON parsing handled           | ![](documentation/manual_testing/json_error.png) |
-| Any endpoint       | Submit wrong data types (e.g. string for int)     | 400 Bad Request              |           | Type validation enforced       | ![](documentation/manual_testing/wrong_type.png) |
-| ForeignKey fields  | Use non-existent related object IDs               | 404 Not Found                |           | Foreign key integrity checked  | ![](documentation/manual_testing/invalid_fk.png) |
-| Cloudinary uploads | No cloud_name config                              | 500 Server Error             |           | Error shown for bad setup      | ![](documentation/manual_testing/cloudinary_error.png) |
+Throughout the manual testing process, both error handling and data validation were successfully verified across multiple features of the application.
+
+**Data validation** was tested by submitting forms with missing or invalid fields. This included:
+- Registration with missing email, password, or username
+- Common and short passwords
+- Invalid email formats
+- Empty or non-JSON content in posts
+- Uploading non-image files for image fields (e.g., PDF)
+
+**Error handling** was tested by triggering:
+- Unauthorized actions (e.g., liking or commenting while logged out)
+- Forbidden actions (e.g., trying to edit another user's profile or post)
+- Accessing non-existent data (e.g., invalid like ID, user profile, or comment)
+
+The backend consistently responded with appropriate status codes (e.g., 400, 401, 403, 404, 204) and helpful error messages, confirming that both validation and error handling are properly implemented and functioning as expected.
 
 ---
-
-You can paste this directly into your `TESTING.md` and begin filling in the results as you test!
-
-Want me to generate a downloadable `.md` file or add this to your existing `TESTING.md` now?
-
 
 
 > [!NOTE]  
