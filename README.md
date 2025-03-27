@@ -481,8 +481,11 @@ To visualize the schema, I used an **online ERD generator** based on Django mode
 
 ## 🧪 Testing <a id="testing"></a>
 
-- **Manual Testing**: Thorough checks across user flows (authentication, CRUD operations, interactions)
-- **Future Enhancements**: Planned integration of automated tests using `pytest` for improved reliability
+All functionality was manually tested using a combination of frontend interactions and backend validation. This includes form submissions, error messages, user authentication, image uploads, data validation, and proper permission handling across the application.
+
+> **Note:**  
+> Full details including test cases, screenshots, and validation results are documented in the [TESTING.md](TESTING.md) file.
+
 
 [Go to Contents](#contents)
 
