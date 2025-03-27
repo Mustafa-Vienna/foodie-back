@@ -493,13 +493,37 @@ All functionality was manually tested using a combination of frontend interactio
 
 ## 📈 Agile Methodology <a id="agile-methodology"></a>
 
-- **Kanban Workflow**: Managed via GitHub Projects with a Kanban board
-- **Project Evolution**: Iterative development with milestones:
-  1. Authentication & Profiles
-  2. Posts & Interactions
-  3. Advanced Social Features
+This project followed an **Agile** approach using **GitHub Projects (Kanban Board)** for planning and task tracking. Each task was created as a GitHub Issue and assigned a priority using the **MoSCoW Method** (`Must-Have`, `Should-Have`, `Could-Have`, `Won’t-Have`). Tasks moved through stages: `To Do`, `In Progress`, `In Review`, and `Done`.
+
+### 🧩 Workflow Highlights
+
+- **Kanban Board**: [View board here](https://github.com/users/Mustafa-Vienna/projects/6) for real-time tracking 
+> ### 📝 Note on Agile Planning and User Stories
+>
+> While this project followed an Agile-inspired approach, the **user stories** and **Kanban board** were formalized near the end of the development cycle.
+>
+> At the beginning, I focused on backend development by following the Code Institute’s Django REST Framework tutorial to build a solid and functional foundation.
+>
+> As I moved to frontend integration for testing and interaction, I encountered unexpected challenges due to **modern library dependencies** and limited documentation. Much of my time was spent troubleshooting breaking changes and ensuring compatibility.
+>
+> Additionally, the original project idea evolved into the current **Foody** platform. With only a short time left before submission, I structured the Kanban board and wrote the user stories based on **actual implemented features** and thorough manual testing.
+>
+> Some features I had planned could not be completed due to time constraints. These have been marked accordingly in the project backlog. This retrospective approach ensures honesty and transparency while still applying Agile principles effectively.
+
+
+### 📅 Iterative Milestones
+
+1. **Authentication & Profiles**  
+   User login, registration, profile creation and management, JWT integration  
+
+2. **Posts & Interactions**  
+   CRUD operations for posts, likes, comments, image handling, validation  
+
+3. **Advanced Social Features**  
+   Follow system, filtering, search, popular content (Could-Have or Won't-Have items)
 
 [Go to Contents](#contents)
+
 
 ---
 
