@@ -122,10 +122,15 @@ No errors or warnings were found. Below are the results with screenshots stored 
 
 ### ❤️ Likes
 
-| Endpoint           | User Action                                       | Expected Result             | Pass/Fail | Comments                       | Screenshot |
-|--------------------|---------------------------------------------------|------------------------------|-----------|--------------------------------|------------|
-| `/likes/`          | Like post twice                                   | 400 Bad Request or 204 OK    |           | Uniqueness constraint          | ![](documentation/manual_testing/like_duplicate.png) |
-| `/likes/`          | Like a deleted post                               | 404 Not Found                |           | Post existence check           | ![](documentation/manual_testing/like_deleted_post.png) |
+| Endpoint | User Action | Expected Result | Pass/Fail | Comments | Screenshot |
+|----------|-------------|-----------------|-----------|----------|------------|
+| `/likes/` | View all likes | 200 OK | ✅ | Successfully displays all likes | ![screenshot](documentation/manual_testing/likes_display_all.png) |
+| `/likes/:id/` | Visitor (not logged in) tries to delete a like | 401 Unauthorized | ✅ | "Authentication credentials were not provided." shown | ![screenshot](documentation/manual_testing/likes_delete_unauth.png) |
+| `/likes/:id/` | Logged-in user views like they created | Edit (delete) option visible | ✅ | Correct delete option displayed for own like | ![screenshot](documentation/manual_testing/likes_editable.png) |
+| `/likes/:id/` | Logged-in user unlikes a post | 204 No Content | ✅ | Like successfully deleted | ![screenshot](documentation/manual_testing/likes_delete_success.png) |
+| `/likes/` | Logged-in user likes a post | 201 Created | ✅ | Post successfully liked | ![screenshot](documentation/manual_testing/likes_post_success.png) |
+| `/likes/:id/` | Access non-existent like ID (e.g. `/likes/999/`) | 404 Not Found | ✅ | "Not found" or "No like matches the given query" shown | ![screenshot](documentation/manual_testing/likes_nonexistent_like.png) |
+
 
 ---
 
