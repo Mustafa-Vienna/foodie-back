@@ -60,12 +60,16 @@ No errors or warnings were found. Below are the results with screenshots stored 
 
 ---
 
-### 🔐 Authentication
+### 🔐 Login
 
-| Endpoint           | User Action                                       | Expected Result             | Pass/Fail | Comments                       | Screenshot |
-|--------------------|---------------------------------------------------|------------------------------|-----------|--------------------------------|------------|
-| `/dj-rest-auth/login/` | Incorrect credentials | 401 Unauthorized | ✅ | Generic error, no user data exposed | ![screenshot](documentation/manual_testing/login_invalid.png) |
-| `/dj-rest-auth/login/` | Valid credentials | 200 OK | ✅ | JWT token and user returned | ![screenshot](documentation/manual_testing/login_success.png) |
+| Endpoint | User Action | Expected Result | Pass/Fail | Comments | Screenshot |
+|----------|-------------|-----------------|-----------|----------|------------|
+| `/dj-rest-auth/login/` | Submit without `password` | 400 Bad Request | ✅ | Password is required | ![screenshot](documentation/manual_testing/login_missing_password.png) |
+| `/dj-rest-auth/login/` | Submit without `username` or `email` | 400 Bad Request | ✅ | Username or email is required | ![screenshot](documentation/manual_testing/login_missing_username.png) |
+| `/dj-rest-auth/login/` | Submit with non-existent user credentials | 400 Bad Request | ✅ | No user found | ![screenshot](documentation/manual_testing/login_nonexistent_user.png) |
+| `/dj-rest-auth/login/` | Submit with invalid email format | 400 Bad Request | ✅ | Email format is invalid | ![screenshot](documentation/manual_testing/login_invalid_email_format.png) |
+| `/dj-rest-auth/login/` | Submit valid credentials | 200 OK | ✅ | JWT token and user returned | ![screenshot](documentation/manual_testing/login_success.png) |
+
 
 ---
 
@@ -73,8 +77,16 @@ No errors or warnings were found. Below are the results with screenshots stored 
 
 | Endpoint           | User Action                                       | Expected Result             | Pass/Fail | Comments                       | Screenshot |
 |--------------------|---------------------------------------------------|------------------------------|-----------|--------------------------------|------------|
-| `/profiles/<id>/`  | Try to update another user’s profile              | 403 Forbidden                |           | Restricted to owner only       | ![](documentation/manual_testing/update_other_profile.png) |
-| `/profiles/`       | Submit empty name or invalid image                | 400 Bad Request              |           | Image format or name required  | ![](documentation/manual_testing/profile_invalid_data.png) |
+### 👤 Profile
+
+| Endpoint | User Action | Expected Result | Pass/Fail | Comments | Screenshot |
+|----------|-------------|-----------------|-----------|----------|------------|
+| `/profiles/?author=:id` | Search for existing user profile | 200 OK | ✅ | User profile details displayed correctly | ![screenshot](documentation/manual_testing/profile_display_existing_user.png) |
+| `/profiles/:id/` | Upload invalid image format (e.g., PDF) | 400 Bad Request | ✅ | Only image files are accepted | ![screenshot](documentation/manual_testing/profile_invalid_image_format.png) |
+| `/profiles/?author=9999` | Search non-existent user | 404 Not Found or Empty result | ✅ | “No profile matches the given query.” shown | ![screenshot](documentation/manual_testing/profile_non_existent_user.png) |
+| `/profiles/:id/` | Edit own profile with valid data | 200 OK | ✅ | Profile updated successfully | ![screenshot](documentation/manual_testing/profile_edit_success.png) |
+| `/profiles/:id/` | Try editing another user's profile | 403 Forbidden or fields hidden | ✅ | Form fields hidden, edit not allowed | ![screenshot](documentation/manual_testing/profile_edit_blocked.png) |
+
 
 ---
 
