@@ -6,23 +6,49 @@
 
 ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=Mustafa-Vienna&repo=foodie-back&layout=compact)
 
+## 📖 Contents <a id="contents"></a>
 
-## Project Overview
+1. [Project Overview](#project-overview)
+2. [Related Projects](#related-projects)
+3. [Project Structure](#project-structure)
+4. [Project Modules](#project-modules)
+5. [Features](#features)
+   - [Current Features](#current-features)
+   - [Upcoming Features](#upcoming-features)
+6. [Technologies Used](#technologies-used)
+7. [Quick Start](#quick-start)
+   - [Installation](#installation)
+   - [Environment Configuration](#environment-configuration)
+8. [Testing](#testing)
+9. [Agile Methodology](#agile-methodology)
+10. [Deployment](#deployment)
+11. [Known Issues and Future Features](#known-issues-and-future-features)
+12. [Credits](#credits)
 
-Foodie API is a backend for a community platform where food lovers can share and discover delicious recipes. Built with Django Rest Framework, it provides a robust backend for social interactions around food content.
+---
 
-### 🌐 Related Projects
+## 🌟 Project Overview <a id="project-overview"></a>
 
-#### 🧠 Backend API (Django Rest Framework + JWT)
+Foodie API is a backend for a community platform where food lovers can share and discover delicious recipes. Built with Django REST Framework, it provides a robust backend for social interactions around food content.
+
+[Go to Contents](#contents)
+
+---
+
+## 🌐 Related Projects <a id="related-projects"></a>
+
+### 🧠 Backend API (Django Rest Framework + JWT)
 - 🔗 GitHub: [Mustafa-Vienna/foodie-back](https://github.com/Mustafa-Vienna/foodie-back)
 - 🚀 Live: [https://foodieback-0e50528a3736.herokuapp.com/](https://foodieback-0e50528a3736.herokuapp.com/)
 
-#### 💻 Frontend Application (React)
+### 💻 Frontend Application (React)
 - 🔗 GitHub: [Mustafa-Vienna/foodie](https://github.com/Mustafa-Vienna/foodie)
 - 🚀 Live: [https://foodiefront-bacd5250c6d8.herokuapp.com/](https://foodiefront-bacd5250c6d8.herokuapp.com/)
 
+[Go to Contents](#contents)
 
-## 📁 Project Structure
+
+## 📂 Project Structure <a id="project-structure"></a>
 
 ```
 FOODIE-BACK/
@@ -114,343 +140,275 @@ FOODIE-BACK/
 └── .gitignore
 ```
 
-## 🗂 Project Modules
+[Go to Contents](#contents)
 
-* 🧠 Main Config: `foodie_api/`
+---
+
+## 🗂 Project Modules <a id="project-modules"></a>
+
+* 🧠 **Main Config**: `foodie_api/`
   - Core project configuration
   - API settings and main URLs
   - Permissions and serializers
 
-* 🍽 Posts: `posts/`
+* 🍽 **Posts**: `posts/`
   - Create, read, update, delete food posts
   - Content management
   - Post-related utilities
 
-* ❤️ Likes: `likes/`
+* ❤️ **Likes**: `likes/`
   - Like functionality
   - User interaction tracking
 
-* 💬 Comments: `comments/`
+* 💬 **Comments**: `comments/`
   - Comment system
   - User discussions
 
-* 👥 Followers: `followers/`
+* 👥 **Followers**: `followers/`
   - User follow/unfollow mechanics
   - Social connection management
 
-* 👤 Profiles: `profiles/`
+* 👤 **Profiles**: `profiles/`
   - User profile management
   - Profile-related operations
 
-## 🚀 Features
+[Go to Contents](#contents)
 
-### ✅ Current Features
-
-## 🧠 Foodie API Backend Features
-
-This Django REST Framework-powered backend delivers a robust and modular API for the Foodie platform, complete with image handling, authentication, and social interactions.
 
 ---
 
-### 🔐 JWT-Based Authentication
+## 🚀 Features <a id="features"></a>
 
+### ✅ Current Features <a id="current-features"></a>
+
+#### 🔐 JWT-Based Authentication
 - Secure login and token management with **SimpleJWT**
 - Returns custom payload with user details (ID, username, profile image)
-- Integrated into login/signup flow
-
+- Integrated into login/signup flow  
 📸 *Proof:*  
 ![Admin Login](../foodie-back/documentation/backend_validation/admin_login.png)
 
----
-
-### 👤 User Profile Management
-
-- Profiles are automatically created on user registration
+#### 👤 User Profile Management
+- Profiles automatically created on user registration
 - Users can edit their name, bio, and avatar
-- Avatar images are handled via **Cloudinary**
-- Dynamic counts for:
-  - Posts
-  - Followers
-  - Following
-
+- Avatar images handled via **Cloudinary**
+- Dynamic counts for posts, followers, following  
 📸 *Proof:*  
 ![Profile Detail](../foodie-back/documentation/backend_validation/user_profile.png)
 
----
-
-### 🍽 Create, Update & Delete Food Posts
-
+#### 🍽 Create, Update & Delete Food Posts
 - Authenticated users can:
   - Create rich posts with title, intro, steps, ingredients, and images
   - Update or delete only their own posts
-- Validations for fields like tags, category, and image
-
+- Validations for fields like tags, category, and image  
 📸 *Proof:*  
 ![Post Management](../foodie-back/documentation/backend_validation/posts_management.png)
 
----
-
-### 🖼 Image Upload via Cloudinary
-
+#### 🖼 Image Upload via Cloudinary
 - Profile and post images stored using **Cloudinary**
 - Fallback to a default image when none is uploaded
 - Fully integrated into serializers for real-time rendering
 
----
-
-### ❤️ Like System for Posts
-
+#### ❤️ Like System for Posts
 - Users can like/unlike any post
-- Total likes and like status (`liked` / `not liked`) are calculated per user
-- Tooltip feedback and frontend counter sync
-
+- Total likes and like status (`liked` / `not liked`) calculated per user
+- Tooltip feedback and frontend counter sync  
 📸 *Proof:*  
-![Comments](../foodie-back/documentation/backend_validation/Likes_system.png)
+![Likes System](../foodie-back/documentation/backend_validation/Likes_system.png)
 
----
-
-### 💬 Comment System Under Posts
-
+#### 💬 Comment System Under Posts
 - Comment creation, listing, and user linking
 - Shows author info and avatar
-- Only comment owners can delete or update their comments
-
+- Only comment owners can delete or update their comments  
 📸 *Proof:*  
 ![Comments](../foodie-back/documentation/backend_validation/Comment_system.png)
 
----
-
-### 👥 Follow/Unfollow Users
-
+#### 👥 Follow/Unfollow Users
 - Authenticated users can follow or unfollow others
-- Profile detail view shows:
-  - Follow status
-  - Followers and following counts
-- Prevents duplicate follows
-
+- Profile detail view shows follow status and counts
+- Prevents duplicate follows  
 📸 *Proof:*  
-![Comments](../foodie-back/documentation/backend_validation/Followes_system.png)
+![Followers System](../foodie-back/documentation/backend_validation/Followes_system.png)
 
----
-
-### 🔎 Filtering, Search & Pagination
-
-- Full filtering and ordering for posts:
-  - `likes_count`, `comments_count`, `created_at`, etc.
+#### 🔎 Filtering, Search & Pagination
+- Full filtering and ordering for posts (e.g., `likes_count`, `comments_count`, `created_at`)
 - Filter by tag or category using DjangoFilterBackend
-- Paginated results for efficient browsing
-
+- Paginated results for efficient browsing  
 📸 *Proof:*  
 ![Search & Filters](../foodie-back/documentation/backend_validation/Search_Filter_system.png)  
 ![Tags System](../foodie-back/documentation/backend_validation/Posts_Tags_system.png)
 
----
-
-### 📦 Modular & RESTful API Design
-
+#### 📦 Modular & RESTful API Design
 - Organized by app: `profiles`, `posts`, `comments`, `likes`, `followers`
 - RESTful views and URL patterns for clean endpoint usage
 - Token-protected POST, PATCH, DELETE actions
 
----
-
-### 🚫 Error Handling Example
-
-- Example: Attempting to access a non-existent profile
-
+#### 🚫 Error Handling Example
+- Example: Attempting to access a non-existent profile  
 📸 *Proof:*  
 ![404 Profile Not Found](../foodie-back/documentation/backend_validation/non_exist_profile.png)
 
-
-### 🔜 Upcoming Features
-
-The following features are in the pipeline and will be implemented in future versions of the Foodie API. These enhancements aim to improve user engagement, content interaction, and personalization across the platform.
-
 ---
+[Go to Contents](#contents)
+
+
+### 🔜 Upcoming Features <a id="upcoming-features"></a>
 
 #### 🔁 Like & Reply to Comments
-- Allow users to like individual comments for better feedback visibility.
-- Introduce **comment replies** to enable threaded discussions.
-- Build hierarchical structure using parent-child relationships.
-
-🧪 *Planned Test Cases:*
-- Verify comment reply creation by authenticated users.
-- Ensure reply nesting is limited to one level deep (for clarity).
-- Test like toggling on comments and reply consistency in API.
-
----
+- Allow users to like individual comments
+- Introduce **comment replies** for threaded discussions
+- Build hierarchical structure using parent-child relationships  
+🧪 *Planned Test Cases:*  
+- Verify comment reply creation by authenticated users  
+- Ensure reply nesting limited to one level  
+- Test like toggling on comments
 
 #### 📝 Add New Post from Profile Page
-- Allow users to create posts directly from their profile page.
-- Reduces navigation friction and promotes more posting activity.
-- Improves UX by placing creation entry points where users are most active.
-
-🧪 *Planned Test Cases:*
-- Ensure form visibility only for profile owners.
-- Validate post creation and redirection back to profile on success.
-
----
+- Create posts directly from profile page
+- Reduces navigation friction  
+🧪 *Planned Test Cases:*  
+- Ensure form visibility only for profile owners  
+- Validate post creation and redirection
 
 #### 🌟 Popular Profiles
-- A new endpoint to list **top profiles** based on:
-  - Follower count
-  - Post count
-  - Engagement (likes, comments)
-
-🧪 *Planned Test Cases:*
-- Rank profiles correctly based on dynamic follower/post metrics.
-- Ensure endpoint is paginated and filterable.
-
----
+- Endpoint to list top profiles based on follower count, post count, engagement  
+🧪 *Planned Test Cases:*  
+- Rank profiles correctly  
+- Ensure endpoint is paginated and filterable
 
 #### 🔔 Real-Time Notifications (WebSockets)
-- Notify users in real-time about:
-  - New followers
-  - Likes
-  - Comments or replies
-- Built with Django Channels + Redis backend
-
-🧪 *Planned Test Cases:*
-- Validate event broadcasting on `like`, `comment`, or `follow`.
-- Test fallback to polling for unsupported clients.
-
----
+- Notify users about new followers, likes, comments/replies
+- Built with Django Channels + Redis backend  
+🧪 *Planned Test Cases:*  
+- Validate event broadcasting  
+- Test fallback to polling
 
 #### 💌 Direct Messaging (DM)
-- Private chat between users.
-- Supports:
-  - New message notifications
-  - Chat list with latest activity
-  - Real-time updates via WebSockets
-
-🧪 *Planned Test Cases:*
-- Ensure only involved users can view or send messages.
-- Rate-limit message sending to prevent spam.
-
----
+- Private chat with notifications and real-time updates via WebSockets  
+🧪 *Planned Test Cases:*  
+- Ensure only involved users can view/send messages  
+- Rate-limit message sending
 
 #### 📌 Save for Later / Bookmark Recipes
-- Users can bookmark recipes and view a "Saved Posts" section.
-- Helps users build personal collections for future cooking inspiration.
-
-🧪 *Planned Test Cases:*
-- Prevent duplicate bookmarks per user.
-- Validate saved/un-saved toggle in both frontend and API.
-
----
+- Bookmark recipes and view in "Saved Posts" section  
+🧪 *Planned Test Cases:*  
+- Prevent duplicate bookmarks  
+- Validate saved/un-saved toggle
 
 #### 🧠 Smart Content Recommendations
-- Recommend posts based on:
-  - Tags
-  - Categories
-  - Previously liked or commented content
-- Powered by simple rule-based logic at first (can later move to ML-based)
+- Recommend posts based on tags, categories, liked content  
+🧪 *Planned Test Cases:*  
+- Exclude user’s own posts  
+- Fallback to trending posts if data insufficient
 
-🧪 *Planned Test Cases:*
-- Ensure recommendations exclude the user’s own posts.
-- Validate fallback to trending posts if data is insufficient.
+[Go to Contents](#contents)
 
 ---
 
-### 🧩 Followers System – Coming Soon!
+## 🛠 Technologies Used <a id="technologies-used"></a>
 
-The `followers` app is already in place, with models and serializers prepared.  
-Due to time constraints during the current milestone, it was not integrated into the frontend. However, it will be completed in the next version and linked with the notifications and profile feed system.
+### Backend Framework & API
+- [![Django](https://img.shields.io/badge/Django-5.1.5-grey?logo=django&logoColor=092E20)](https://www.djangoproject.com)
+- [![DRF](https://img.shields.io/badge/DRF-3.15.2-grey?logo=rest&logoColor=ffffff)](https://www.django-rest-framework.org)
+- [![dj-rest-auth](https://img.shields.io/badge/dj--rest--auth-7.0.1-grey)](https://dj-rest-auth.readthedocs.io)
+- [![django-allauth](https://img.shields.io/badge/django--allauth-65.3.1-grey?logo=django&logoColor=092E20)](https://django-allauth.readthedocs.io)
+- [![Simple JWT](https://img.shields.io/badge/SimpleJWT-5.4.0-grey?logo=python&logoColor=3776AB)](https://github.com/jazzband/djangorestframework-simplejwt)
 
-🧪 *Planned Test Cases:*
-- Follow/unfollow toggle and state validation
-- Prevent self-following
-- Count accuracy on profile detail
+### Database & Storage
+- [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-grey?logo=postgresql&logoColor=336791)](https://www.postgresql.org)
+- [![Cloudinary](https://img.shields.io/badge/Cloudinary-1.42.1-grey?logo=cloudinary&logoColor=3448C5)](https://cloudinary.com)
+- [![django-cloudinary-storage](https://img.shields.io/badge/django--cloudinary--storage-0.3.0-grey?logo=cloudinary&logoColor=3448C5)](https://github.com/klis87/django-cloudinary-storage)
+- [![WhiteNoise](https://img.shields.io/badge/WhiteNoise-6.9.0-grey?logo=python&logoColor=FFFFFF)](https://whitenoise.readthedocs.io)
+
+### Additional Libraries & Tools
+- [![django-cors-headers](https://img.shields.io/badge/django--cors--headers-4.6.0-grey?logo=django&logoColor=092E20)](https://github.com/adamchainz/django-cors-headers)
+- [![django-filter](https://img.shields.io/badge/django--filter-24.3-grey?logo=django&logoColor=092E20)](https://django-filter.readthedocs.io)
+- [![django-extensions](https://img.shields.io/badge/django--extensions-3.2.3-grey?logo=django&logoColor=092E20)](https://django-extensions.readthedocs.io)
+- [![gunicorn](https://img.shields.io/badge/gunicorn-23.0.0-grey?logo=python&logoColor=FFFFFF)](https://gunicorn.org)
+- [![Pillow](https://img.shields.io/badge/Pillow-11.1.0-grey?logo=python&logoColor=3776AB)](https://python-pillow.org)
+
+### Supporting Libraries
+- [![asgiref](https://img.shields.io/badge/asgiref-grey?logo=python&logoColor=3776AB)](https://pypi.org/project/asgiref/)
+- [![certifi](https://img.shields.io/badge/certifi-grey?logo=python&logoColor=3776AB)](https://pypi.org/project/certifi/)
+- [![charset-normalizer](https://img.shields.io/badge/charset--normalizer-grey?logo=python&logoColor=3776AB)](https://pypi.org/project/charset-normalizer/)
+- [![idna](https://img.shields.io/badge/idna-grey?logo=python&logoColor=3776AB)](https://pypi.org/project/idna/)
+- [![oauthlib](https://img.shields.io/badge/oauthlib-grey?logo=python&logoColor=3776AB)](https://pypi.org/project/oauthlib/)
+- [![packaging](https://img.shields.io/badge/packaging-grey?logo=python&logoColor=3776AB)](https://pypi.org/project/packaging/)
+- [![psycopg2-binary](https://img.shields.io/badge/psycopg2--binary-grey?logo=python&logoColor=3776AB)](https://pypi.org/project/psycopg2-binary/)
+- [![PyJWT](https://img.shields.io/badge/PyJWT-grey?logo=python&logoColor=3776AB)](https://pypi.org/project/PyJWT/)
+- [![pytz](https://img.shields.io/badge/pytz-grey?logo=python&logoColor=3776AB)](https://pypi.org/project/pytz/)
+- [![requests](https://img.shields.io/badge/requests-grey?logo=python&logoColor=3776AB)](https://pypi.org/project/requests/)
+- [![requests-oauthlib](https://img.shields.io/badge/requests--oauthlib-grey?logo=python&logoColor=3776AB)](https://pypi.org/project/requests-oauthlib/)
+- [![six](https://img.shields.io/badge/six-grey?logo=python&logoColor=3776AB)](https://pypi.org/project/six/)
+- [![sqlparse](https://img.shields.io/badge/sqlparse-grey?logo=python&logoColor=3776AB)](https://pypi.org/project/sqlparse/)
+- [![typing_extensions](https://img.shields.io/badge/typing__extensions-grey?logo=python&logoColor=3776AB)](https://pypi.org/project/typing_extensions/)
+- [![urllib3](https://img.shields.io/badge/urllib3-grey?logo=python&logoColor=3776AB)](https://pypi.org/project/urllib3/)
+
+These libraries ensure efficient HTTP requests, secure data handling, and overall stability.
+
+### Development & Deployment
+- [![Heroku](https://img.shields.io/badge/Heroku-grey?logo=heroku&logoColor=430098)](https://www.heroku.com)
+- [![Git](https://img.shields.io/badge/Git-grey?logo=git&logoColor=F05032)](https://git-scm.com)
+- [![GitHub](https://img.shields.io/badge/GitHub-grey?logo=github&logoColor=181717)](https://github.com)
+- [![VSCode](https://img.shields.io/badge/VSCode-grey?logo=visual-studio-code&logoColor=007ACC)](https://code.visualstudio.com)
+
+[Go to Contents](#contents)
 
 ---
 
-> 📅 All features are structured with test-driven development in mind, and will include proper unit tests and integration tests using Django REST Framework and `pytest` as needed.
 
+## ⚡️ Quick Start <a id="quick-start"></a>
 
----
-
-## 🔧 Technologies Used
-
-### 🖥 Backend
-
-- Django 5.1.5
-- Django Rest Framework 3.15.2
-- PostgreSQL (via dj-database-url)
-- Cloudinary (media storage)
-- WhiteNoise (static file serving)
-
-### 🔐 Authentication
-
-- Simple JWT 5.4.0
-- Django AllAuth
-- Dj-Rest-Auth
-
-### 🧰 Additional Libraries
-
-- `django-cors-headers`
-- `django-filter`
-- `gunicorn` (WSGI server for deployment)
-- `pillow` (image handling)
-
----
-
-## 🛠 Prerequisites
-
-Make sure you have the following installed:
-
-- Python 3.9+
-- `pip`
-- `virtualenv` (recommended for isolated environments)
-
----
-
-## ⚡️ Quick Start
-
-### 📥 Installation
+### 📥 Installation <a id="installation"></a>
 
 1. **Clone the repository**
-
 ```bash
 git clone https://github.com/Mustafa-Vienna/foodie-back.git
 cd foodie-back
 ```
 
-2. **Create a virtual environment**
-  ```bash
-  python -m venv venv
-  source venv/bin/activate 
+2. **Create virtual environment**
+```
+python -m venv venv
+source venv/bin/activate  # Unix/Mac
+venv\Scripts\activate     # Windows
+```
 
-  # On Windows use 
-  `venv\Scripts\activate`
-  ```
-
-3. **Install dependencies**
-```bash
+3. **Install Dependencies**
+```
 pip install -r requirements.txt
 ```
 
 4. **Set up environment variables**
-  - Create an `env.py` file with:
-```python
+- **Create `env.py` file with:**
+
+```
 import os
 os.environ['SECRET_KEY'] = 'your-secret-key'
 os.environ['DATABASE_URL'] = 'your-database-url'
 os.environ['CLOUDINARY_URL'] = 'your-cloudinary-url'
 ```
 
-5. **Run migrations**
-```bash
+
+5. **Run migration**
+```
 python manage.py migrate
 ```
 
 6. **Start the development server**
-```bash
+```
 python manage.py runserver
 ```
-
-## 🔐 Environment Configuration
-
-These environment variables must be set (either in `env.py` for local use or in your hosting config for deployment):
+🔐 Environment Configuration <a id="environment-configuration"></a>
+Variable	Description
+SECRET_KEY	Django secret key
+DATABASE_URL	PostgreSQL connection string
+CLOUDINARY_URL	Full Cloudinary media URL
+CLOUDINARY_CLOUD_NAME	Your Cloudinary cloud name
+CLOUDINARY_API_KEY	Your Cloudinary API key
+CLOUDINARY_API_SECRET	Your Cloudinary API secret
+DEV	Set to 1 for local development
+ALLOWED_HOSTS	Comma-separated list of allowed domains
 
 | Variable                | Description                                 |
 |-------------------------|---------------------------------------------|
@@ -463,3 +421,115 @@ These environment variables must be set (either in `env.py` for local use or in 
 | `DEV`                   | Set to `1` for local development            |
 | `ALLOWED_HOSTS`         | Comma-separated list of allowed domains     |
 
+
+---
+
+
+## 🧪 Testing <a id="testing"></a>
+
+- **Manual Testing**: Thorough checks across user flows (authentication, CRUD operations, interactions)
+- **Future Enhancements**: Planned integration of automated tests using `pytest` for improved reliability
+
+[Go to Contents](#contents)
+
+---
+
+## 📈 Agile Methodology <a id="agile-methodology"></a>
+
+- **Kanban Workflow**: Managed via GitHub Projects with a Kanban board
+- **Project Evolution**: Iterative development with milestones:
+  1. Authentication & Profiles
+  2. Posts & Interactions
+  3. Advanced Social Features
+
+[Go to Contents](#contents)
+
+---
+
+## 🚀 Deployment <a id="deployment"></a>
+
+The **Foody API** backend is deployed on **Heroku**, ensuring reliable and scalable hosting.
+
+### 🔧 Backend Configuration Highlights
+
+- **Hosting Platform**: [Heroku](https://www.heroku.com/)
+- **Database**: PostgreSQL (configured via [`dj-database-url`](https://pypi.org/project/dj-database-url/))
+- **Static File Handling**:
+  - Served efficiently using [WhiteNoise](https://whitenoise.evans.io/) with compressed manifest storage:
+    ```python
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    ```
+- **Media File Storage**:
+  - Managed via [Cloudinary](https://cloudinary.com/):
+    ```python
+    DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+    CLOUDINARY_URL is loaded from `env.py` or Heroku config vars.
+    ```
+
+### 🔐 Security & Production Settings
+
+- **Environment Variables**: Set using `env.py` (locally) or via Heroku Config Vars.
+- **HTTPS & SSL**: Enforced with production-level security:
+    ```python
+    SECURE_SSL_REDIRECT = True
+    SECURE_HSTS_SECONDS = 31536000
+    ```
+- **JWT Authentication**:
+  - Secure and token-based, using rotating refresh tokens.
+  - Cookies are:
+    - `HttpOnly`
+    - `Secure`
+    - `SameSite=None`
+  - Access token lifetime: **30 minutes**  
+  - Refresh token lifetime: **7 days**
+
+### ⚙️ Deployment Notes
+
+- `.env.py` is excluded via `.gitignore` to protect sensitive credentials.
+- Application is served using `gunicorn` (production-grade WSGI server).
+- `Procfile` and `runtime.txt` are included for Heroku compatibility.
+- **CORS** is configured to allow:
+  - Localhost (for development)
+  - Frontend deployment on Heroku
+  - Code Institute IDE domains via regex:
+
+    ```python
+    CORS_ALLOWED_ORIGIN_REGEXES = [
+        r"^https:\/\/.*\.codeinstitute-ide\.net$",
+    ]
+    ```
+
+[Go to Contents](#contents)
+
+
+---
+
+## ⚠️ Known Issues and Future Features <a id="known-issues-and-future-features"></a>
+
+- **Known Issues**:  
+  The original Code Institute tutorials were based on older versions of Django (3.2.4), dj-rest-auth (2.1.9), and other dependencies, relying heavily on session-based authentication. This project, however, uses significantly updated libraries, including Django 5.1.5 and dj-rest-auth 7.0.1, which introduced breaking changes and deprecated functionalities.  
+  As a result, the login and authentication flow had to be restructured using JWT-based authentication, and several configurations needed to be adapted manually. Connecting the frontend to the backend initially caused confusion due to these differences, but all compatibility issues have now been resolved.  
+
+  Currently, there are no critical backend issues. Minor UI adjustments and additional frontend integration work are still ongoing.
+
+- **Future Features**:  
+  See [Upcoming Features](#upcoming-features) for planned enhancements like real-time notifications, bookmarking, and content recommendations.
+
+[Go to Contents](#contents)
+
+
+---
+
+## 🙌 Credits <a id="credits"></a>
+
+- **Resources Used**:  
+  A special thanks to the **Code Institute** for their comprehensive Django REST Framework materials, which were instrumental in completing this project. The tutorials provided invaluable guidance, even when working with newer libraries. I also relied heavily on the **Django** and **Django REST Framework** documentation and various **Cloudinary** tutorials to tackle compatibility issues.
+
+- **Acknowledgements**:  
+  - **Luke (Mentor)**: For his invaluable feedback and guidance throughout the project, ensuring its readiness and helping navigate various challenges.
+  - **Ioan**: For his unwavering support and expertise in resolving compatibility issues with JWT and new library setups. His guidance, patience, and suggestions were crucial.
+  - **Alex**: For his timely advice and practical solutions when dealing with complex issues, particularly in integrating JWT and ensuring smooth data flow between the frontend and backend. Their help was pivotal in navigating the complexities of modern web development.
+
+Thanks to the open-source community, project mentors, and everyone who offered support during this journey.
+
+[Go to Contents](#contents)
