@@ -90,14 +90,19 @@ No errors or warnings were found. Below are the results with screenshots stored 
 
 ---
 
-### 📝 Posts
+### 📝 Post
 
-| Endpoint           | User Action                                       | Expected Result             | Pass/Fail | Comments                       | Screenshot |
-|--------------------|---------------------------------------------------|------------------------------|-----------|--------------------------------|------------|
-| `/posts/`          | Create post while logged out                      | 401 Unauthorized             |           | Auth required                  | ![](documentation/manual_testing/post_unauthorized.png) |
-| `/posts/`          | Create post with missing title                    | 400 Bad Request              |           | Title is required              | ![](documentation/manual_testing/post_missing_title.png) |
-| `/posts/<id>/`     | Update/delete someone else’s post                 | 403 Forbidden                |           | Authenticated user check       | ![](documentation/manual_testing/post_forbidden_edit.png) |
-| `/posts/<id>/`     | Post with invalid JSON content                    | 400 Bad Request              |           | Content field format checked   | ![](documentation/manual_testing/post_invalid_json.png) |
+| Endpoint | User Action | Expected Result | Pass/Fail | Comments | Screenshot |
+|----------|-------------|-----------------|-----------|----------|------------|
+| `/posts/` | View all posts | 200 OK | ✅ | Existing posts displayed successfully | ![screenshot](documentation/manual_testing/posts_display_all.png) |
+| `/posts/:id/` | View another user's post | Edit fields hidden | ✅ | Edit form not shown, read-only display | ![screenshot](documentation/manual_testing/posts_edit_blocked_other_user.png) |
+| `/posts/:id/` | Edit own post | 200 OK | ✅ | Edit form shown, post updated successfully | ![screenshot](documentation/manual_testing/posts_edit_success.png) |
+| `/posts/` | Create post with blank title | 400 Bad Request | ✅ | Title field is required | ![screenshot](documentation/manual_testing/posts_blank_title.png) |
+| `/posts/` | Create post with empty content | 400 Bad Request | ✅ | JSON fields (intro, ingredients, steps, etc.) required | ![screenshot](documentation/manual_testing/posts_empty_content.png) |
+| `/posts/` | Submit invalid content format (e.g., plain text) | 400 Bad Request | ✅ | Must be a valid JSON object | ![screenshot](documentation/manual_testing/posts_invalid_content_format.png) |
+| `/posts/` | Upload non-image file as image (e.g., PDF) | 400 Bad Request | ✅ | File must be a valid image | ![screenshot](documentation/manual_testing/posts_invalid_image.png) |
+| `/posts/` | Submit valid post with all fields | 201 Created | ✅ | Post created successfully | ![screenshot](documentation/manual_testing/posts_create_success.png) |
+
 
 ---
 
