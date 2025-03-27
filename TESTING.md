@@ -106,13 +106,17 @@ No errors or warnings were found. Below are the results with screenshots stored 
 
 ---
 
-### 💬 Comments
+### 💬 Comment
 
-| Endpoint           | User Action                                       | Expected Result             | Pass/Fail | Comments                       | Screenshot |
-|--------------------|---------------------------------------------------|------------------------------|-----------|--------------------------------|------------|
-| `/comments/`       | Submit empty comment                              | 400 Bad Request              |           | Text required                  | ![](documentation/manual_testing/comment_empty.png) |
-| `/comments/`       | Comment on non-existent post                      | 404 Not Found                |           | Invalid post ID handled        | ![](documentation/manual_testing/comment_invalid_post.png) |
-| `/comments/<id>/`  | Try to delete another user’s comment              | 403 Forbidden                |           | Ownership required             | ![](documentation/manual_testing/comment_forbidden_delete.png) |
+| Endpoint | User Action | Expected Result | Pass/Fail | Comments | Screenshot |
+|----------|-------------|-----------------|-----------|----------|------------|
+| `/comments/?post=:id` | View all comments for a post | 200 OK | ✅ | All related comments are displayed | ![screenshot](documentation/manual_testing/comments_display_all.png) |
+| `/comments/` | Submit empty comment | 400 Bad Request | ✅ | "This field may not be blank" shown | ![screenshot](documentation/manual_testing/comments_empty_comment.png) |
+| `/comments/` | Submit valid comment | 201 Created | ✅ | Comment posted successfully | ![screenshot](documentation/manual_testing/comments_post_success.png) |
+| `/comments/:id/` | Edit newly created comment | 200 OK | ✅ | Comment updated successfully | ![screenshot](documentation/manual_testing/comments_edit_own_comment.png) |
+| `/comments/:id/` | Edit existing comment created by user | 200 OK | ✅ | Comment editable and updated | ![screenshot](documentation/manual_testing/comments_edit_existing_comment.png) |
+| `/comments/:id/` | Try editing another user's comment | Edit form not shown | ✅ | Edit option not visible, access blocked | ![screenshot](documentation/manual_testing/comments_edit_blocked.png) |
+
 
 ---
 
