@@ -134,12 +134,17 @@ No errors or warnings were found. Below are the results with screenshots stored 
 
 ---
 
-### 🔁 Follows
 
-| Endpoint           | User Action                                       | Expected Result             | Pass/Fail | Comments                       | Screenshot |
-|--------------------|---------------------------------------------------|------------------------------|-----------|--------------------------------|------------|
-| `/followers/`      | Follow yourself                                   | 400 Bad Request              |           | Prevent self-follow            | ![](documentation/manual_testing/follow_self.png) |
-| `/followers/`      | Follow same user twice                            | 400 Bad Request              |           | Unique constraint applied      | ![](documentation/manual_testing/follow_duplicate.png) |
+> **Note:** Due to time constraints and with the project submission deadline approaching, I did not implement the followers functionality in the frontend. As a result, I was only able to manually test two basic backend scenarios: ensuring unauthenticated users cannot follow, and verifying that authenticated users can successfully follow another user. Both tests passed as expected and are documented below.
+
+
+### 🤝 Followers
+
+| Endpoint | User Action | Expected Result | Pass/Fail | Comments | Screenshot |
+|----------|-------------|-----------------|-----------|----------|------------|
+| `/followers/` | Visitor (not logged in) tries to follow | No follow option shown | ✅ | Auth required, follow option hidden in UI | ![screenshot](documentation/manual_testing/followers_no_follow_option_for_visitor.png) |
+| `/followers/` | Logged-in user follows another user | 201 Created | ✅ | Follow created successfully | ![screenshot](documentation/manual_testing/followers_follow_success.png) |
+
 
 ---
 
