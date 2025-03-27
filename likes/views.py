@@ -14,12 +14,14 @@ class LikeListCreateView(generics.ListCreateAPIView):
     def get_queryset(self):
         queryset = super().get_queryset()
         post_id = self.request.query_params.get("post")
-        
+
         if post_id:
-            queryset = queryset.filter(post_id=post_id, author=self.request.user)
+            queryset = queryset.filter(
+                post_id=post_id, author=self.request.user
+                 )
         elif self.request.user.is_authenticated:
             queryset = queryset.filter(author=self.request.user)
-            
+
         return queryset
 
     def perform_create(self, serializer):

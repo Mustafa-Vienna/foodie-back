@@ -6,5 +6,6 @@ app_name = 'likes'
 urlpatterns = [
     path('', views.LikeListCreateView.as_view(), name='like-list-create'),
     path('<int:pk>/', views.LikeDetailView.as_view(), name='like-detail'),
-    path('post/<int:post_id>/', views.LikeDeleteByPostView.as_view(), name='like-delete-by-post'),
+    path('post/<int:post_id>/', views.LikeDeleteByPostView.as_view(),
+         name='like-delete-by-post'),
 ]
