@@ -20,15 +20,15 @@ DEBUG = os.getenv("DEV") == "1"
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 
 # CORS & CSRF SETTINGS
-CSRF_COOKIE_SAMESITE = "None"  
+CSRF_COOKIE_SAMESITE = "None"
 CSRF_COOKIE_SECURE = True
-CSRF_COOKIE_HTTPONLY = True  
+CSRF_COOKIE_HTTPONLY = True
 
-SESSION_COOKIE_SAMESITE = "None"  
+SESSION_COOKIE_SAMESITE = "None"
 SESSION_COOKIE_SECURE = True
-SESSION_COOKIE_HTTPONLY = True  
+SESSION_COOKIE_HTTPONLY = True
 
-CORS_ALLOW_CREDENTIALS = True  
+CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_ALL_ORIGINS = os.getenv("CORS_ALLOW_ALL_ORIGINS") == "1"
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
@@ -62,15 +62,18 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework_simplejwt.authentication.JWTAuthentication",
-        "rest_framework.authentication.SessionAuthentication",  # Allow session-based auth
+        # Allow session-based auth
+        "rest_framework.authentication.SessionAuthentication",
     ],
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticatedOrReadOnly",
     ],
-    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "DEFAULT_PAGINATION_CLASS":
+        "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 10,
     "DATETIME_FORMAT": "%a, %d %b %Y %H:%M:%S",
-    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
+    "DEFAULT_FILTER_BACKENDS":
+        ["django_filters.rest_framework.DjangoFilterBackend"],
 }
 
 # Restrict API responses to JSON in production
@@ -109,7 +112,8 @@ ACCOUNT_AUTHENTICATION_METHOD = "username"
 ACCOUNT_EMAIL_VERIFICATION = os.getenv("ACCOUNT_EMAIL_VERIFICATION", "none")
 
 REST_AUTH_SERIALIZERS = {
-    "USER_DETAILS_SERIALIZER": "foodie_api.serializers.CustomRegisterSerializer"
+    "USER_DETAILS_SERIALIZER":
+        "foodie_api.serializers.CustomRegisterSerializer"
 }
 
 # APPLICATIONS
@@ -179,7 +183,7 @@ TEMPLATES = [
 ]
 
 # DATABASE CONFIGURATION
-DATABASES = { "default": dj_database_url.parse(os.getenv("DATABASE_URL")) }
+DATABASES = {"default": dj_database_url.parse(os.getenv("DATABASE_URL"))}
 
 # PASSWORD VALIDATION
 AUTH_PASSWORD_VALIDATORS = [
