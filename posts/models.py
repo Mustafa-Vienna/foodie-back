@@ -92,4 +92,4 @@ class Post(models.Model):
     else:
       # Merge with default structure to ensure all keys exist
       self.content = {**default_content, **self.content}
-    super().save(*args, **kwargs)
+      super().save(*args, **kwargs)
