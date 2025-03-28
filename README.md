@@ -187,7 +187,7 @@ FOODIE-BACK/
 - Returns custom payload with user details (ID, username, profile image)
 - Integrated into login/signup flow  
 📸 *Proof:*  
-![Admin Login](../foodie-back/documentation/backend_validation/admin_login.png)
+![Admin Login](documentation/backend_validation/admin_login.png)
 
 #### 👤 User Profile Management
 - Profiles automatically created on user registration
@@ -195,7 +195,7 @@ FOODIE-BACK/
 - Avatar images handled via **Cloudinary**
 - Dynamic counts for posts, followers, following  
 📸 *Proof:*  
-![Profile Detail](../foodie-back/documentation/backend_validation/user_profile.png)
+![Profile Detail](documentation/backend_validation/user_profile.png)
 
 #### 🍽 Create, Update & Delete Food Posts
 - Authenticated users can:
@@ -203,7 +203,7 @@ FOODIE-BACK/
   - Update or delete only their own posts
 - Validations for fields like tags, category, and image  
 📸 *Proof:*  
-![Post Management](../foodie-back/documentation/backend_validation/posts_management.png)
+![Post Management](documentation/backend_validation/posts_management.png)
 
 #### 🖼 Image Upload via Cloudinary
 - Profile and post images stored using **Cloudinary**
@@ -215,29 +215,29 @@ FOODIE-BACK/
 - Total likes and like status (`liked` / `not liked`) calculated per user
 - Tooltip feedback and frontend counter sync  
 📸 *Proof:*  
-![Likes System](../foodie-back/documentation/backend_validation/Likes_system.png)
+![Likes System](documentation/backend_validation/Likes_system.png)
 
 #### 💬 Comment System Under Posts
 - Comment creation, listing, and user linking
 - Shows author info and avatar
 - Only comment owners can delete or update their comments  
 📸 *Proof:*  
-![Comments](../foodie-back/documentation/backend_validation/Comment_system.png)
+![Comments](documentation/backend_validation/Comment_system.png)
 
 #### 👥 Follow/Unfollow Users
 - Authenticated users can follow or unfollow others
 - Profile detail view shows follow status and counts
 - Prevents duplicate follows  
 📸 *Proof:*  
-![Followers System](../foodie-back/documentation/backend_validation/Followes_system.png)
+![Followers System](documentation/backend_validation/Followes_system.png)
 
 #### 🔎 Filtering, Search & Pagination
 - Full filtering and ordering for posts (e.g., `likes_count`, `comments_count`, `created_at`)
 - Filter by tag or category using DjangoFilterBackend
 - Paginated results for efficient browsing  
 📸 *Proof:*  
-![Search & Filters](../foodie-back/documentation/backend_validation/Search_Filter_system.png)  
-![Tags System](../foodie-back/documentation/backend_validation/Posts_Tags_system.png)
+![Search & Filters](documentation/backend_validation/Search_Filter_system.png)  
+![Tags System](documentation/backend_validation/Posts_Tags_system.png)
 
 #### 📦 Modular & RESTful API Design
 - Organized by app: `profiles`, `posts`, `comments`, `likes`, `followers`
@@ -247,7 +247,7 @@ FOODIE-BACK/
 #### 🚫 Error Handling Example
 - Example: Attempting to access a non-existent profile  
 📸 *Proof:*  
-![404 Profile Not Found](../foodie-back/documentation/backend_validation/non_exist_profile.png)
+![404 Profile Not Found](documentation/backend_validation/non_exist_profile.png)
 
 ---
 [Go to Contents](#contents)
