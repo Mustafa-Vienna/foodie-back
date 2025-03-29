@@ -1,4 +1,4 @@
-# 🍽 Foody API Backend
+# 🍽 Foodie API Backend
 
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/t/Mustafa-Vienna/foodie-back)](https://github.com/Mustafa-Vienna/foodie-back/commits/main)
 [![GitHub last commit](https://img.shields.io/github/last-commit/Mustafa-Vienna/foodie-back)](https://github.com/Mustafa-Vienna/foodie-back/commits/main)
@@ -493,43 +493,42 @@ All functionality was manually tested using a combination of frontend interactio
 
 ## 📈 Agile Methodology <a id="agile-methodology"></a>
 
-This project followed an **Agile** approach using **GitHub Projects (Kanban Board)** for planning and task tracking. Each task was created as a GitHub Issue and assigned a priority using the **MoSCoW Method** (`Must-Have`, `Should-Have`, `Could-Have`, `Won’t-Have`). Tasks moved through stages: `To Do`, `In Progress`, `In Review`, and `Done`.
+This project followed an **Agile** approach using **GitHub Projects (Kanban Board)** for planning and task tracking. Each task was created as a GitHub Issue and assigned a priority using the **MoSCoW Method** (`Must-Have`, `Should-Have`, `Could-Have`, `Won't-Have`). Tasks moved through stages: `Backlog`, `Ready`, `In Progress`, `In Review`, and `Done`.
 
 ### 🧩 Workflow Highlights
 
-- **Kanban Board**: [View board here](https://github.com/users/Mustafa-Vienna/projects/6) for real-time tracking 
+- **Kanban Board**: [View completed user stories here](https://github.com/users/Mustafa-Vienna/projects/9/views/1) for detailed tracking of each implemented feature.
+
 > ### 📝 Note on Agile Planning and User Stories
 >
 > While this project followed an Agile-inspired approach, the **user stories** and **Kanban board** were formalized near the end of the development cycle.
 >
-> At the beginning, I focused on backend development by following the Code Institute’s Django REST Framework tutorial to build a solid and functional foundation.
+> Initially, I prioritized backend development, closely following the Code Institute's Django REST Framework tutorial to establish a robust and reliable foundation.
 >
-> As I moved to frontend integration for testing and interaction, I encountered unexpected challenges due to **modern library dependencies** and limited documentation. Much of my time was spent troubleshooting breaking changes and ensuring compatibility.
+> During frontend integration, I encountered several challenges due to **modern library dependencies** and limited documentation, spending considerable time resolving compatibility issues and troubleshooting unexpected breaking changes.
 >
-> Additionally, the original project idea evolved into the current **Foody** platform. With only a short time left before submission, I structured the Kanban board and wrote the user stories based on **actual implemented features** and thorough manual testing.
+> The original project concept evolved into the current **Foodie** platform. Given time constraints, I structured the Kanban board and developed user stories based on **actually implemented features** and comprehensive manual testing.
 >
-> Some features I had planned could not be completed due to time constraints. These have been marked accordingly in the project backlog. This retrospective approach ensures honesty and transparency while still applying Agile principles effectively.
-
+> All planned features were successfully completed and have now been moved to the `Done` column, reflecting an accurate and transparent account of the project's final state.
 
 ### 📅 Iterative Milestones
 
 1. **Authentication & Profiles**  
-   User login, registration, profile creation and management, JWT integration  
+   User login, registration, profile creation and management, JWT integration
 
 2. **Posts & Interactions**  
-   CRUD operations for posts, likes, comments, image handling, validation  
+   CRUD operations for posts, likes, comments, image handling, validation
 
 3. **Advanced Social Features**  
-   Follow system, filtering, search, popular content (Could-Have or Won't-Have items)
+   Follow system, filtering, search, popular content
 
 [Go to Contents](#contents)
-
 
 ---
 
 ## 🚀 Deployment <a id="deployment"></a>
 
-The **Foody API** backend is deployed on **Heroku**, ensuring reliable and scalable hosting.
+The **Foodie API** backend is deployed on **Heroku**, ensuring reliable and scalable hosting.
 
 ### 🔧 Backend Configuration Highlights
 
